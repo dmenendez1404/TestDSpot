@@ -1,0 +1,56 @@
+.container {
+  background-color: #EFF8F5;
+  padding: 52px;
+  height: 100%;
+  mat-card {
+    height: 684px;
+    background: white;
+    .form-container {
+      height: 100%;
+      padding: 60px 50px;
+      display: flex;
+      flex-direction: column;
+      h2 {
+        color: #707070;
+        margin-bottom: 60px;
+      }
+      .pic-container {
+        width: 145px;
+        height: 145px;
+        border-radius: 50%;
+        border: solid 4px #2FC7F5;
+        img {
+          background: transparent;
+          width: 100%;
+        }
+      }
+      form {
+        margin-top: 75px;
+        width: 70%;
+        display: flex;
+        justify-content: space-between;
+        mat-divider {
+          background: #707070;
+        }
+        .control-container{
+          display: flex;
+          flex-direction: column;
+          width: 266px;
+        }
+        .changePass {
+          width: 91px;
+          height: 31px;
+          background-image: linear-gradient(180deg, #6AA5E3, #6866E9);
+          margin: -15px 0px 0px 0px;
+        }
+      }
+      .saveButton {
+        width: 265px;
+        height: 57px;
+        margin-top: 50px;
+        background-image: linear-gradient(180deg, #6FE3FF, #2FC7F5);
+      }
+    }
+  }
+}
+

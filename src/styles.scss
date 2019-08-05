@@ -3,7 +3,41 @@
 
 @import url('https://fonts.googleapis.com/icon?family=Material+Icons');
 
-@import url('https://fonts.googleapis.com/css?family=Monserrat');
+@import url("https://fonts.googleapis.com/css?family=Montserrat:500,700");
 
 $material-icons-font-path: '~material-icons/iconfont/';
 
+body{
+  margin: 0px;
+  padding: 0px;
+}
+.mat-form-field-appearance-outline .mat-form-field-outline {
+  color: #C3C3C3;
+}
+
+input{
+  color: #707070!important;
+}
+
+.mat-form-field-label, mat-label{
+  color:#707070;
+}
+
+@import '~@angular/material/theming';
+
+$custom-typography: mat-typography-config(
+  $font-family: Montserrat,
+  $headline: mat-typography-level(32px, 48px, 700),
+  $body-1: mat-typography-level(16px, 24px, 500)
+);
+
+@include mat-core($custom-typography);
+@include angular-material-typography($custom-typography);
+
+.swal2-title, #swal2-content{
+  font-family: Montserrat;
+}
+
+body{
+  overflow: hidden;
+}

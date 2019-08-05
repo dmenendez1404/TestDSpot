@@ -1,0 +1,39 @@
+<div class="container">
+  <mat-card>
+    <div class="form-container">
+      <h2>Profile</h2>
+      <span class="pic-container">
+    <img src="../../../assets/img/profile-pic.png">
+  </span>
+      <form [formGroup]="userForm">
+        <div class="control-container">
+          <mat-label>User name</mat-label>
+          <mat-form-field appearance="outline" color="primary">
+            <input matInput formControlName="user" autocomplete="false" placeholder="User name">
+            <mat-error *ngIf="userForm.controls.user.errors?.required">User Required</mat-error>
+          </mat-form-field>
+        </div>
+        <div class="control-container">
+          <mat-label>Email</mat-label>
+          <mat-form-field appearance="outline" color="primary">
+            <input matInput formControlName="email" autocomplete="false" placeholder="Email">
+            <mat-error *ngIf="userForm.controls.email.errors">
+             {{userForm.controls.email.errors.required? 'Email Required':'Wrong Format'}}</mat-error>
+          </mat-form-field>
+        </div>
+        <mat-divider [vertical]="true"></mat-divider>
+        <div class="control-container">
+          <mat-label>Password</mat-label>
+          <mat-form-field appearance="outline" color="primary">
+            <input matInput formControlName="pass" required autocomplete="false" placeholder="Password"
+                   type="password">
+            <mat-error *ngIf="userForm.controls.pass.errors?.required">Password Required</mat-error>
+          </mat-form-field>
+          <button mat-raised-button color="primary" class="mat-elevation-z6 w-100 mt-3 changePass"
+                  (click)="changePass()">CHANGE</button>
+        </div>
+      </form>
+      <button mat-raised-button (click)="onSubmit()" class="mat-elevation-z6 saveButton">Save</button>
+    </div>
+  </mat-card>
+</div>

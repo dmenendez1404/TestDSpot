@@ -1,20 +1,27 @@
 import {Injectable} from '@angular/core';
 import Swal from 'sweetalert2';
+import {Router} from '@angular/router';
+import {BehaviorSubject} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  user = {user: 'Dspot', pass: 'AngularTest', email: 'dSpot@gmail.com'};
-
-  constructor() {
+  userActive$ = new BehaviorSubject<any>({user: 'Dspot', pass: 'AngularTest', email: 'dSpot@gmail.com'});
+  user;
+  constructor(private router: Router) {
+    this.userActive$.subscribe((user) => {
+      this.user = user;
+    });
   }
 
   login(form) {
+
     if (form.user === this.user.user) {
       if (form.pass === this.user.pass) {
         localStorage.setItem('access_token', btoa('Dspot'));
+        this.router.navigate(['/dashboard']);
         Swal({
           position: 'top-end',
           type: 'success',
@@ -26,6 +33,7 @@ export class AuthService {
       } else {
         Swal({
           type: 'error',
+          position: 'top-end',
           title: 'Autenticación Fallida!',
           text: 'Contraseña incorrecta',
         });
@@ -34,6 +42,7 @@ export class AuthService {
     else {
       Swal({
         type: 'error',
+        position: 'top-end',
         title: 'Autenticación Fallida!',
         text: 'El usuario no existe',
       });
@@ -51,5 +60,18 @@ export class AuthService {
 
   logout() {
     localStorage.removeItem('access_token');
+    this.router.navigate(['/login']);
+  }
+
+  getMemberActive() {
+    return this.userActive$;
+  }
+
+  updateUser(user) {
+    this.userActive$.next(user);
+  }
+  changePass(pass){
+    this.user.pass = pass;
+    this.userActive$.next(this.user);
   }
 }

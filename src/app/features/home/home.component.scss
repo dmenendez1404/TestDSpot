@@ -1,0 +1,124 @@
+.container {
+  width: 100%;
+  .top-toolbar {
+    padding: 0px;
+    height: 103px;
+    background: white;
+    justify-content: space-between;
+    div {
+      height: 103px;
+      width: 400px;
+      background-image: linear-gradient(180deg, #6AA5E3, #6866E9);
+      display: flex;
+      align-items: center;
+      img {
+        margin-left: 50px;
+        width: 216px;
+        height: 47px;
+      }
+    }
+    .profile-pic {
+      width: 32px;
+      height: 32px;
+      margin: 32px;
+    }
+  }
+  .body{
+    display: flex;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    .menu-container {
+      min-width: 400px;
+      height: calc(100% - 103px);
+      background-color: white;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      .top-menu {
+        display: flex;
+        flex-direction: column;
+        .info {
+          display: flex;
+          padding: 70px 50px 0px 50px;
+          .profile-pic-menu {
+            width: 52px;
+            height: 52px;
+            margin-right: 11px;
+          }
+          h2 {
+            margin: 0px;
+            font-family: Montserrat;
+            font-size: 18px;
+            font-weight: bold;
+            color: #707070;
+          }
+          h3 {
+            margin: 0px;
+            font-family: Montserrat;
+            font-size: 14px;
+            font-weight: lighter;
+            color: #707070;
+          }
+        }
+        .menu {
+          display: flex;
+          flex-direction: column;
+          padding: 50px 0px;
+          span {
+            height: 50px;
+            align-items: center;
+            display: flex;
+            .active{
+              background-color: #2FC7F5;
+              width: 12px;
+              height: 12px;
+              border-radius: 0px 50px 50px 0px;
+              position: absolute;
+            }
+            p{
+              font-family: Montserrat;
+              font-size: 18px;
+              font-weight: normal;
+              color: #707070;
+              margin-left: 56px;
+              &.active-link{
+                color:#2FC7F5
+              }
+              text-underline: none;
+            }
+            &:hover{
+              cursor: pointer;
+            }
+            &:focus{
+              outline-width: 0px;
+            }
+          }
+          button {
+            width: 265px;
+            height: 57px;
+            margin-left: 56px;
+            margin-top: 50px;
+            background-image: linear-gradient(180deg, #6FE3FF, #2FC7F5);
+          }
+        }
+      }
+      .logout {
+        background-color: rgb(112, 112, 112, .3);
+        width: 85px;
+        height: 85px;
+        border-radius: 0% 100% 0% 0%;
+        display: flex;
+        align-items: center;
+        padding-left: 16px;
+        &:hover {
+          cursor: pointer;
+        }
+      }
+    }
+    .panel-container{
+      width: 100%;
+    }
+  }
+
+}

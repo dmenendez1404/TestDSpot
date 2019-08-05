@@ -1,0 +1,34 @@
+<div class="container">
+  <mat-toolbar class="top-toolbar">
+    <div>
+      <img src="../../../assets/img/logo_sidebar.png">
+    </div>
+    <img class="profile-pic" src="../../../assets/img/profile-pic.png">
+  </mat-toolbar>
+  <div class="body">
+    <div class="menu-container">
+      <div class="top-menu">
+        <div class="info">
+          <img class="profile-pic-menu" src="../../../assets/img/profile-pic.png">
+          <span>
+            <h2>{{memberActive.user}}</h2>
+            <h3>{{memberActive.email}}</h3>
+          </span>
+        </div>
+        <div class="menu">
+          <span *ngFor="let row of menu" (click)="goTo(row)" [routerLink]="row.url">
+            <div class="active" *ngIf="row.active"></div>
+            <p [ngClass]="{'active-link':row.active}">{{row.name}}</p>
+          </span>
+          <button mat-raised-button class="mat-elevation-z6">New Expenses</button>
+        </div>
+      </div>
+      <div class="logout" (click)="logout()">
+        <img src="../../../assets/img/logout.png">
+      </div>
+    </div>
+    <div class="panel-container">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>

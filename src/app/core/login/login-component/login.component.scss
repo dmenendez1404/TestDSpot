@@ -3,9 +3,11 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #888888;
+  background-image: url('../../../../assets/img/login-background.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
 
-    .form-container {
+  .form-container {
       border-radius: 10px;
       background-color: white;
       width: 536px;
@@ -19,6 +21,7 @@
       }
       mat-form-field {
         width: 266px;
+
       }
       button {
         width: 265px;
@@ -28,6 +31,9 @@
       }
       a {
         color: #6FE3FF;
+        font-family: Montserrat;
+        font-weight: normal;
+        font-size: 12px;
       }
     }
 }
