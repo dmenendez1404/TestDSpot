@@ -1,0 +1,33 @@
+.container {
+  height: -webkit-fill-available;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #888888;
+
+    .form-container {
+      border-radius: 10px;
+      background-color: white;
+      width: 536px;
+      height: 649px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      box-shadow: 0px 3px 6px rgb(157,206,255, .16);
+      img {
+        margin: 80px 0px;
+      }
+      mat-form-field {
+        width: 266px;
+      }
+      button {
+        width: 265px;
+        height: 57px;
+        background-image: linear-gradient(180deg, #6AA5E3, #6866E9);
+        margin: 40px 0px 25px 0px;
+      }
+      a {
+        color: #6FE3FF;
+      }
+    }
+}

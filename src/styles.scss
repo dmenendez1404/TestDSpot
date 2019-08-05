@@ -1,1 +1,9 @@
-/* You can add global styles to this file, and also import other style files */
+// indigo-pink, deeppurple-amber, purple-green and pink-bluegrey.
+@import '~@angular/material/prebuilt-themes/purple-green.css';
+
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+
+@import url('https://fonts.googleapis.com/css?family=Monserrat');
+
+$material-icons-font-path: '~material-icons/iconfont/';
+

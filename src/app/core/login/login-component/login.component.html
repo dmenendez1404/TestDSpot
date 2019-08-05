@@ -1,0 +1,16 @@
+<div class="container">
+    <form class="form-container" (ngSubmit)="login()" [formGroup]="loginForm">
+      <img src="../../../../assets/img/logo.png">
+      <mat-form-field appearance="outline">
+        <input matInput placeholder="User" formControlName="user" autocomplete="false">
+        <mat-error *ngIf="loginForm.controls.user.errors?.required">User Required</mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <input matInput placeholder="Password" formControlName="pass" required autocomplete="false"
+               type="'password'">
+        <mat-error *ngIf="loginForm.controls.pass.errors?.required">Password Required</mat-error>
+      </mat-form-field>
+      <button mat-raised-button color="primary" class="mat-elevation-z6 w-100 mt-3" type="submit">Login</button>
+      <a>Create New Account</a>
+    </form>
+</div>
