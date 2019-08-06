@@ -1,0 +1,120 @@
+.container {
+  background-color: #EFF8F5;
+  padding: 50px;
+  height: 100%;
+  mat-card {
+    background: white;
+    .header {
+      display: flex;
+      justify-content: space-between;
+      padding: 0px 24px;
+      align-items: center;
+      h2 {
+        color: #707070;
+      }
+      mat-form-field{
+        box-shadow: 0px 2px 10px rgba(0, 0, 0, .1);
+        width: 205px;
+        height: 31px;
+        mat-select{
+          width: 205px;
+          height: 31px;
+          border-radius: 5px;
+        }
+        mat-icon{
+          color: #000;
+          font-size: 19px;
+          background: white;
+          margin: -15px 0px 0px 0px;
+        }
+      }
+    }
+    table {
+      width: 100%;
+        th{
+          border-bottom-width: 0px;
+          font-family: Montserrat;
+          font-size: 16px;
+          font-weight: normal;
+          color: #707070;
+        }
+      tr {
+        border-bottom: 1px solid #4B4B4B;
+      }
+      td {
+        width: 24%;
+        font-family: Montserrat;
+        font-size: 15px;
+        font-weight: lighter;
+        color: #4B4B4B;
+        &.mat-cell.cdk-column-actions.mat-column-actions {
+          width: 25%;
+          min-width: 235px;
+        }
+      }
+    }
+    .editButtom {
+      width: 91px;
+      height: 31px;
+      background-image: linear-gradient(180deg, #6AA5E3, #6866E9);
+      font-size: 13px;
+      margin-right: 22px;
+    }
+    .deleteButtom {
+      width: 91px;
+      height: 31px;
+      background-color: black;
+      font-size: 13px;
+    }
+  }
+
+}
+.header-select{
+  display: flex;
+  justify-content: flex-end;
+  background-image: linear-gradient(180deg, #6FE3FF, #2FC7F5);
+  height: 31px;
+  align-items: center;
+  p{
+    color: white;
+    width: fit-content;
+    margin: 0px 50px 0px 0px;
+  }
+  mat-icon{
+    margin-right: 8px;
+    color: white;
+  }
+}
+
+::ng-deep {
+  .mat-form-field-flex {
+    align-items: center !important;
+    .mat-form-field-infix {
+      border-top: 0px;
+    }
+  }
+}
+#no-results{
+  width: 100%;
+  height: 700px;
+  background-color: rgb(112, 112, 112, .3);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  p{
+    font-size: 28px;
+    font-family: Montserrat;
+    font-weight: bold;
+    width: 306px;
+    text-align: center;
+    color: rgb(112, 112, 112, .5);;
+  }
+  button{
+    border-radius: 5px;
+    width: 256px;
+    height: 57px;
+    font-size: 18px;
+    color: white;
+  }
+}

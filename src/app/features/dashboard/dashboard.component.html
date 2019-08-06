@@ -21,19 +21,20 @@
              {{userForm.controls.email.errors.required? 'Email Required':'Wrong Format'}}</mat-error>
           </mat-form-field>
         </div>
-        <mat-divider [vertical]="true"></mat-divider>
+        <mat-divider [vertical]="true" id="verticalDivider"></mat-divider>
         <div class="control-container">
+          <mat-divider id="horizontalDivider"></mat-divider>
           <mat-label>Password</mat-label>
           <mat-form-field appearance="outline" color="primary">
             <input matInput formControlName="pass" required autocomplete="false" placeholder="Password"
-                   type="password">
-            <mat-error *ngIf="userForm.controls.pass.errors?.required">Password Required</mat-error>
+                   type="password" readonly>
           </mat-form-field>
           <button mat-raised-button color="primary" class="mat-elevation-z6 w-100 mt-3 changePass"
                   (click)="changePass()">CHANGE</button>
         </div>
       </form>
-      <button mat-raised-button (click)="onSubmit()" class="mat-elevation-z6 saveButton">Save</button>
+      <button mat-raised-button (click)="onSubmit()" cdkFocusInitial
+              class="mat-elevation-z6 saveButton">Save</button>
     </div>
   </mat-card>
 </div>

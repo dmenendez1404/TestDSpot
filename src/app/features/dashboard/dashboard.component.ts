@@ -2,6 +2,8 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {AuthService} from '../../core/login/auth.service';
 import {Subscription} from 'rxjs';
+import {MatDialog} from '@angular/material';
+import {DialogChangePasswordComponent} from '../dialog-changePassword/dialog-change-password.component';
 
 @Component({
   selector: 'app-dashboard',
@@ -12,11 +14,11 @@ export class DashboardComponent implements OnInit, OnDestroy {
   userForm: FormGroup;
   authSubscription: Subscription;
 
-  constructor(public fb: FormBuilder, private authService: AuthService) {
+  constructor(public fb: FormBuilder, private authService: AuthService, public dialog: MatDialog) {
     this.userForm = this.fb.group({
       'user': new FormControl('', Validators.compose([Validators.required])),
       'email': new FormControl('', Validators.compose([Validators.required, Validators.email])),
-      'pass': new FormControl('', Validators.compose([Validators.required])),
+      'pass': new FormControl(''),
     });
   }
 
@@ -28,18 +30,27 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   }
 
-  onSubmit(){
-    if(this.userForm.valid)
-      this.authService.updateUser(this.userForm.value)
+  onSubmit() {
+    if (this.userForm.valid)
+      this.authService.updateUser(this.userForm.value);
   }
 
-  changePass(){
-    if(this.userForm.controls.pass.valid)
-      this.authService.changePass(this.userForm.value.pass)
+  changePass() {
+    const dialogRef = this.dialog.open(DialogChangePasswordComponent, {
+      width: '800px',
+      data: {newPassword: ''}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (!!result && result !== '') {
+        this.authService.changePass(result);
+        this.userForm.controls.pass.setValue(result);
+      }
+    });
   }
 
   ngOnDestroy(): void {
-    this.authSubscription.unsubscribe()
+    this.authSubscription.unsubscribe();
   }
 
 

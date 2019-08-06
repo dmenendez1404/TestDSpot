@@ -1,16 +1,19 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
+import {NgModule} from '@angular/core';
 
-import { appRouting } from './app-routing';
-import { AppComponent } from './app.component';
+import {appRouting} from './app-routing';
+import {AppComponent} from './app.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HomeComponent} from './features/home/home.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {SharedModule} from './shared/shared.module';
-import { DashboardComponent } from './features/dashboard/dashboard.component';
-import { ExpensesListComponent } from './features/expenses-list/expenses-list.component';
-import { ExpensesPerWeekComponent } from './features/expenses-perweek/expenses-per-week.component';
+import {DashboardComponent} from './features/dashboard/dashboard.component';
+import {ExpensesListComponent} from './features/expenses-list/expenses-list.component';
+import {ExpensesPerWeekComponent} from './features/expenses-perweek/expenses-per-week.component';
 import {ProfileComponent} from './features/profile/profile.component';
+import {ActivatedRouteSnapshot, RouterModule} from '@angular/router';
+import {DialogChangePasswordComponent} from './features/dialog-changePassword/dialog-change-password.component';
+import {DialogFormComponent} from './features/dialog-form/dialog-form.component';
 
 
 @NgModule({
@@ -20,7 +23,9 @@ import {ProfileComponent} from './features/profile/profile.component';
     DashboardComponent,
     ExpensesListComponent,
     ExpensesPerWeekComponent,
-    ProfileComponent
+    ProfileComponent,
+    DialogChangePasswordComponent,
+    DialogFormComponent,
   ],
   imports: [
     BrowserModule,
@@ -28,9 +33,13 @@ import {ProfileComponent} from './features/profile/profile.component';
     appRouting,
     FormsModule,
     ReactiveFormsModule,
-    SharedModule
+    SharedModule,
+    RouterModule
   ],
   providers: [],
+  entryComponents: [DialogChangePasswordComponent,
+    DialogFormComponent],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}

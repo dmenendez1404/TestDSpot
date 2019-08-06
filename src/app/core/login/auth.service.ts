@@ -8,7 +8,7 @@ import {BehaviorSubject} from 'rxjs';
 })
 export class AuthService {
 
-  userActive$ = new BehaviorSubject<any>({user: 'Dspot', pass: 'AngularTest', email: 'dSpot@gmail.com'});
+  userActive$ = new BehaviorSubject<any>({user: 'Dspot', pass: 'AngularTest', email: 'dspot@gmail.com'});
   user;
   constructor(private router: Router) {
     this.userActive$.subscribe((user) => {
@@ -25,8 +25,8 @@ export class AuthService {
         Swal({
           position: 'top-end',
           type: 'success',
-          title: 'Autenticación Satisfactoria',
-          text: 'Se ha autenticado correctamente',
+          title: 'Success!!',
+          text: 'Success Authenticated',
           showConfirmButton: false,
           timer: 2000
         });
@@ -34,8 +34,8 @@ export class AuthService {
         Swal({
           type: 'error',
           position: 'top-end',
-          title: 'Autenticación Fallida!',
-          text: 'Contraseña incorrecta',
+          title: 'Fail!!!',
+          text: 'Failed Authenticated',
         });
       }
     }
@@ -43,8 +43,8 @@ export class AuthService {
       Swal({
         type: 'error',
         position: 'top-end',
-        title: 'Autenticación Fallida!',
-        text: 'El usuario no existe',
+        title: 'Fail!!!',
+        text: 'User does not exist',
       });
     }
   }
@@ -68,10 +68,29 @@ export class AuthService {
   }
 
   updateUser(user) {
+    this.user.email = user.email;
+    this.user.user = user.user;
     this.userActive$.next(user);
+    Swal({
+      position: 'top-end',
+      type: 'success',
+      title: 'Success!!',
+      text: 'User has been updated',
+      showConfirmButton: false,
+      timer: 2000
+    });
   }
+
   changePass(pass){
     this.user.pass = pass;
     this.userActive$.next(this.user);
+    Swal({
+      position: 'top-end',
+      type: 'success',
+      title: 'Success!!',
+      text: 'Password has been changed',
+      showConfirmButton: false,
+      timer: 2000
+    });
   }
 }

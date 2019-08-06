@@ -1,0 +1,51 @@
+div:first-child {
+  display: flex;
+  justify-content: flex-end;
+  .exit {
+    background-color: rgb(112, 112, 112, .3);
+    width: 25px;
+    height: 25px;
+    border-radius: 0% 0% 0% 100%;
+    display: flex;
+    align-items: center;
+    font-family: Montserrat;
+    font-weight: bold;
+    color: #707070;
+    padding: 0px 0px 14px 24px;
+    margin: -24px;
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}
+
+form {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  .saveButton {
+    width: 265px;
+    height: 47px;
+    color: white;
+    background-image: linear-gradient(180deg, #6AA5E3, #6866E9);
+  }
+  .control-container {
+    display: flex;
+    flex-direction: column;
+    min-width: 150px;
+    max-width: 250px;
+    margin-right: 12px;
+  }
+}
+
+h2 {
+  color: #707070;
+}
+
+.mat-form-field-label, mat-label, h2 {
+  font-family: Montserrat;
+}
+.mat-icon{
+  font-size: 20px;
+  color: #707070;
+}

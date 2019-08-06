@@ -7,12 +7,14 @@
     justify-content: space-between;
     div {
       height: 103px;
-      width: 400px;
+      width: 25%;
+      min-width: 250px;
+      max-width: 400px;
       background-image: linear-gradient(180deg, #6AA5E3, #6866E9);
       display: flex;
       align-items: center;
+      justify-content: center;
       img {
-        margin-left: 50px;
         width: 216px;
         height: 47px;
       }
@@ -23,14 +25,13 @@
       margin: 32px;
     }
   }
-  .body{
-    display: flex;
-    height: 100%;
+  .body {
+    display: -webkit-box;
     width: 100%;
-    position: absolute;
     .menu-container {
-      min-width: 400px;
-      height: calc(100% - 103px);
+      max-width: 400px;
+      min-width: 250px;
+      width: 25%;
       background-color: white;
       display: flex;
       flex-direction: column;
@@ -60,6 +61,12 @@
             font-weight: lighter;
             color: #707070;
           }
+          button {
+            width: 265px;
+            height: 57px;
+            color: white;
+            background-image: linear-gradient(180deg, #6FE3FF, #2FC7F5);
+          }
         }
         .menu {
           display: flex;
@@ -69,37 +76,30 @@
             height: 50px;
             align-items: center;
             display: flex;
-            .active{
+            .active {
               background-color: #2FC7F5;
               width: 12px;
               height: 12px;
               border-radius: 0px 50px 50px 0px;
               position: absolute;
             }
-            p{
+            p {
               font-family: Montserrat;
               font-size: 18px;
               font-weight: normal;
               color: #707070;
               margin-left: 56px;
-              &.active-link{
-                color:#2FC7F5
+              &.active-link {
+                color: #2FC7F5
               }
               text-underline: none;
             }
-            &:hover{
+            &:hover {
               cursor: pointer;
             }
-            &:focus{
+            &:focus {
               outline-width: 0px;
             }
-          }
-          button {
-            width: 265px;
-            height: 57px;
-            margin-left: 56px;
-            margin-top: 50px;
-            background-image: linear-gradient(180deg, #6FE3FF, #2FC7F5);
           }
         }
       }
@@ -116,9 +116,10 @@
         }
       }
     }
-    .panel-container{
-      width: 100%;
+    .panel-container {
+      width: 75%;
     }
   }
 
 }
+

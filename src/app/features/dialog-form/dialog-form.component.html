@@ -1,0 +1,26 @@
+<div>
+  <span class="exit" (click)="this.dialogRef.close()">x</span>
+</div>
+<div>
+  <h2>Change Password</h2>
+  <form [formGroup]="formGroup">
+    <div class="control-container" *ngFor="let item of data">
+      <mat-label>{{item.name}}</mat-label>
+      <mat-form-field appearance="outline" *ngIf="item.type!='Date'">
+        <input matInput  formControlName="{{item.name}}"
+               required autocomplete="false">
+        <mat-icon matPrefix *ngIf="!!item.prefix">{{item.prefix}}</mat-icon>
+        <mat-icon matSuffix fix *ngIf="!!item.suffix">{{item.suffix}}</mat-icon>
+      </mat-form-field>
+      <mat-form-field *ngIf="item.type=='Date'">
+        <input matInput
+               formControlName="{{item.name}}"
+               [matDatepicker]="picker" >
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker ></mat-datepicker>
+      </mat-form-field>
+    </div>
+    <button mat-raised-button [mat-dialog-close]="formGroup.value" class="mat-elevation-z6 saveButton">Ok</button>
+
+  </form>
+</div>

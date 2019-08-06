@@ -1,26 +1,76 @@
-// indigo-pink, deeppurple-amber, purple-green and pink-bluegrey.
-@import '~@angular/material/prebuilt-themes/purple-green.css';
+@import '~@angular/material/theming';
+@include mat-core();
+$candy-app-primary: mat-palette($mat-indigo);
+$candy-app-accent:  mat-palette($mat-pink, A200, A100, A400);
+$candy-app-warn:    mat-palette($mat-red);
+$candy-app-theme: mat-light-theme($candy-app-primary, $candy-app-accent, $candy-app-warn);
+@include angular-material-theme($candy-app-theme);
+
 
 @import url('https://fonts.googleapis.com/icon?family=Material+Icons');
-
 @import url("https://fonts.googleapis.com/css?family=Montserrat:500,700");
 
 $material-icons-font-path: '~material-icons/iconfont/';
 
-body{
+body {
   margin: 0px;
   padding: 0px;
 }
+.mat-dialog-container{
+  margin-left: 200px;
+  margin-right: -150px;
+}
+
 .mat-form-field-appearance-outline .mat-form-field-outline {
   color: #C3C3C3;
 }
 
-input{
-  color: #707070!important;
+p {
+  font-family: Montserrat;
 }
 
-.mat-form-field-label, mat-label{
-  color:#707070;
+.mat-select-placeholder {
+  color: #707070;
+  font-size: 12px;
+}
+
+.mat-select-value {
+  text-align: center;
+  .mat-select-value-text {
+    color: #707070;
+    font-size: 12px;
+  }
+}
+
+.mat-header-cell, .mat-cell {
+  color: #C3C3C3;
+}
+
+.mat-table {
+  background: transparent;
+  box-shadow: unset;
+  tr {
+    border-color: #4B4B4B;
+  }
+}
+
+input {
+  color: #707070 !important;
+}
+
+.mat-select-panel {
+  background: white;
+}
+
+.mat-option-text, .mat-option.mat-active {
+  color: #707070;
+  font-size: 12px;
+  text-align: center;
+  font-weight: normal;
+}
+
+.mat-form-field-label, mat-label {
+  color: #707070;
 }
 
 @import '~@angular/material/theming';
@@ -34,10 +84,7 @@ $custom-typography: mat-typography-config(
 @include mat-core($custom-typography);
 @include angular-material-typography($custom-typography);
 
-.swal2-title, #swal2-content{
+.swal2-title, #swal2-content {
   font-family: Montserrat;
 }
 
-body{
-  overflow: hidden;
-}

@@ -1,6 +1,8 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {AuthService} from '../../core/login/auth.service';
 import {Subscription} from 'rxjs';
+import {ActivatedRoute, NavigationStart, Router} from '@angular/router';
+import {filter, tap} from 'rxjs/operators';
 
 @Component({
   selector: 'app-home',
@@ -10,7 +12,7 @@ import {Subscription} from 'rxjs';
 export class HomeComponent implements OnInit, OnDestroy {
 
   menu = [
-    {name: 'Dashboard', active: true, url: '/dashboard'},
+    {name: 'Dashboard', active: false, url: '/dashboard'},
     {name: 'Expenses List', active: false, url: '/expensesList'},
     {name: 'Expenses per Week', active: false, url: '/expensesPerWeek'},
     {name: 'Profile', active: false, url: '/profile'},
@@ -18,12 +20,30 @@ export class HomeComponent implements OnInit, OnDestroy {
   authSubscription: Subscription;
   memberActive: any;
 
-  constructor(private authService: AuthService) {
+  constructor(private authService: AuthService, private router: Router) {
   }
 
   ngOnInit() {
-    this.authSubscription = this.authService.getMemberActive().subscribe((user)=>{
+    this.authSubscription = this.authService.getMemberActive().subscribe((user) => {
       this.memberActive = user;
+    });
+    this.updateActiveUrl(this.router.url);
+    this.router.events
+      .pipe(
+        filter(event => event instanceof NavigationStart),
+        tap((params: any) => {
+          this.updateActiveUrl(params.url);
+        })
+      )
+      .subscribe();
+  }
+
+  updateActiveUrl(url) {
+    this.menu.map(item => {
+      if (item.url === url)
+        item.active = true;
+      else
+        item.active = false;
     });
   }
 
@@ -31,16 +51,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.authService.logout();
   }
 
-  goTo(row) {
-    this.menu.map(item => {
-      if (item.name == row.name)
-        item.active = true;
-      else
-        item.active = false;
-    });
-  }
-
   ngOnDestroy(): void {
-    this.authSubscription.unsubscribe()
+    this.authSubscription.unsubscribe();
   }
 }

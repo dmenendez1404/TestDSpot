@@ -16,10 +16,12 @@
           </span>
         </div>
         <div class="menu">
-          <span *ngFor="let row of menu" (click)="goTo(row)" [routerLink]="row.url">
+          <span *ngFor="let row of menu" [routerLink]="row.url">
             <div class="active" *ngIf="row.active"></div>
             <p [ngClass]="{'active-link':row.active}">{{row.name}}</p>
           </span>
+        </div>
+        <div class="info">
           <button mat-raised-button class="mat-elevation-z6">New Expenses</button>
         </div>
       </div>

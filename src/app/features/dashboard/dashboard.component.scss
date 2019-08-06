@@ -1,18 +1,16 @@
 .container {
   background-color: #EFF8F5;
-  padding: 52px;
+  padding: 50px;
   height: 100%;
   mat-card {
-    height: 684px;
     background: white;
     .form-container {
-      height: 100%;
-      padding: 60px 50px;
+      padding: 60px 50px 24px 50px;
       display: flex;
       flex-direction: column;
       h2 {
         color: #707070;
-        margin-bottom: 60px;
+        margin-bottom: 24px;
       }
       .pic-container {
         width: 145px;
@@ -25,32 +23,58 @@
         }
       }
       form {
-        margin-top: 75px;
-        width: 70%;
+        margin-top: 24px;
+        flex-wrap: wrap;
         display: flex;
-        justify-content: space-between;
         mat-divider {
           background: #707070;
         }
         .control-container{
           display: flex;
           flex-direction: column;
-          width: 266px;
+          min-width: 150px;
+          max-width: 250px;
+          margin-right: 12px;
         }
         .changePass {
           width: 91px;
           height: 31px;
           background-image: linear-gradient(180deg, #6AA5E3, #6866E9);
           margin: -15px 0px 0px 0px;
+          font-size: 12px;
+        }
+        #horizontalDivider{
+          width: 100%;
+          display: none;
+          position: relative;
+          margin-bottom: 10px;
+        }
+        #verticalDivider{
+          margin-right: 12px;
         }
       }
       .saveButton {
         width: 265px;
         height: 57px;
-        margin-top: 50px;
+        margin-top: 24px;
+        color: white;
         background-image: linear-gradient(180deg, #6FE3FF, #2FC7F5);
       }
     }
+  }
+}
+@media screen and (max-width: 1150px) {
+  #horizontalDivider{
+    display: block!important;
+  }
+  #verticalDivider{
+    display: none;
+  }
+}
+@media screen and (max-width: 903px) {
+  .control-container{
+    max-width: 100%!important;
+    width: 100%!important;
   }
 }
 
