@@ -3,6 +3,7 @@ import {MAT_DATE_FORMATS, MatDialog, MatPaginator, MatTableDataSource} from '@an
 import {FormControl} from '@angular/forms';
 import {DialogChangePasswordComponent} from '../dialog-changePassword/dialog-change-password.component';
 import {DialogFormComponent} from '../dialog-form/dialog-form.component';
+import {ExpenseService} from '../expense.service';
 
 export interface Expense {
   name: string;
@@ -10,18 +11,6 @@ export interface Expense {
   date: Date;
 }
 
-const GENERAL_EXPENSES: Expense[] = [
-  {name: 'Hydrogen', value: 1.0079, date: new Date()},
-  {name: 'Helium', value: 4.0026, date: new Date()},
-  {name: 'Lithium', value: 6.941, date: new Date()},
-  {name: 'Beryllium', value: 9.0122, date: new Date()},
-  {name: 'Boron', value: 10.811, date: new Date()},
-  {name: 'Carbon', value: 12.0107, date: new Date()},
-  {name: 'Nitrogen', value: 14.0067, date: new Date()},
-  {name: 'Oxygen', value: 15.9994, date: new Date()},
-  {name: 'Fluorine', value: 18.9984, date: new Date()},
-  {name: 'Neon', value: 20.1797, date: new Date()},
-];
 const DSPOT_MODE_FORMATS = {
   parse: {
     dateInput: 'MM/DD/YYYY',
@@ -38,84 +27,118 @@ const DSPOT_MODE_FORMATS = {
   selector: 'app-expenses-list',
   templateUrl: './expenses-list.component.html',
   styleUrls: ['./expenses-list.component.scss'],
-  providers:[
+  providers: [
     {provide: MAT_DATE_FORMATS, useValue: DSPOT_MODE_FORMATS}
   ]
 })
 export class ExpensesListComponent implements OnInit {
   displayedColumns: string[] = ['name', 'value', 'date', 'actions'];
-  dataSource = new MatTableDataSource<Expense>(GENERAL_EXPENSES);
+  dataSource;
   filterForm: FormControl = new FormControl();
+  generalExpenses = [];
+  filtering = false;
 
-  constructor(public dialog: MatDialog) {
+  constructor(public dialog: MatDialog, private expenseService: ExpenseService) {
   }
 
   ngOnInit() {
-
+    this.expenseService.getGeneralExpenses().subscribe((expenses) => {
+      this.generalExpenses = expenses;
+      this.dataSource = new MatTableDataSource<Expense>(this.generalExpenses);
+    });
   }
 
   remove(element) {
-    const list = GENERAL_EXPENSES;
-    list.splice(GENERAL_EXPENSES.indexOf(element), 1);
+    const list = this.generalExpenses;
+    list.splice(this.generalExpenses.indexOf(element), 1);
     this.dataSource = new MatTableDataSource<Expense>(list);
   }
 
-  filterByDate(){
+  filterByDate() {
+
     const dialogRef = this.dialog.open(DialogFormComponent, {
       width: '800px',
-      data: [
-        {name: 'from', value: new Date(), type: 'Date'},
-        {name: 'to', value: new Date(), type: 'Date'}
-      ]
+      data: {
+        tittle: 'Filter By Date',
+        items: [
+          {name: 'from', value: new Date(), type: 'Date'},
+          {name: 'to', value: new Date(), type: 'Date'}
+        ]
+      }
     });
 
-    dialogRef.afterClosed().subscribe((result:{from:Date, to: Date}) => {
+    dialogRef.afterClosed().subscribe((result: { from: Date, to: Date }) => {
       if (!!result) {
-        const filterList = GENERAL_EXPENSES.
-        filter((val)=> val.date.getMilliseconds() >= result.from.getMilliseconds() &&
-          val.date.getMilliseconds() < result.to.getMilliseconds())
+        this.filtering = true;
+        const filterList = this.generalExpenses.filter((val) => val.date >= result.from && val.date <= result.to);
         this.dataSource = new MatTableDataSource<Expense>(filterList);
       }
     });
   }
 
-  filterByAmount(){
+  filterByAmount() {
     const dialogRef = this.dialog.open(DialogFormComponent, {
       width: '800px',
-      data: [
-        {name: 'amount', value: '', type: 'number', prefix: 'attach_money'}
-      ]
+      data: {
+        tittle: 'Filter By Amount',
+        items: [
+          {name: 'amount', value: '', type: 'number', prefix: 'attach_money'}
+        ]
+      }
     });
 
     dialogRef.afterClosed().subscribe(result => {
       if (!!result) {
-        console.log(result)
-        const filterList = GENERAL_EXPENSES.filter((val)=>val.value === result.amount)
+        this.filtering = true;
+        const filterList = this.generalExpenses.filter((val) => val.value === result.amount);
         this.dataSource = new MatTableDataSource<Expense>(filterList);
       }
     });
   }
 
   editExpense(element) {
-    const index = GENERAL_EXPENSES.indexOf(element);
+    const index = this.generalExpenses.indexOf(element);
     const dialogRef = this.dialog.open(DialogFormComponent, {
       width: '800px',
-      data: [
-        {name: 'name', value: element.name, type: 'text'},
-        {name: 'value', value: element.value, type: 'number', prefix: 'attach_money'}
-      ]
+      data: {
+        tittle: 'Edit Expense',
+        items: [
+          {name: 'name', value: element.name, type: 'text'},
+          {name: 'value', value: element.value, type: 'number', prefix: 'attach_money'}
+        ]
+      }
     });
 
     dialogRef.afterClosed().subscribe(result => {
       if (!!result) {
-        GENERAL_EXPENSES[index].name = result.name;
-        GENERAL_EXPENSES[index].value = result.value;
-        this.dataSource = new MatTableDataSource<Expense>(GENERAL_EXPENSES);
+        this.generalExpenses[index].name = result.name;
+        this.generalExpenses[index].value = result.value;
+        this.dataSource = new MatTableDataSource<Expense>(this.generalExpenses);
       }
     });
   }
 
-  resetList(){
-    this.dataSource = new MatTableDataSource<Expense>(GENERAL_EXPENSES);
+  resetList() {
+    this.filtering = false
+    this.dataSource = new MatTableDataSource<Expense>(this.generalExpenses);
+  }
+
+  newExpense() {
+    const dialogRef = this.dialog.open(DialogFormComponent, {
+      width: '800px',
+      data: {
+        tittle:'Edit Expense',
+        items: [
+          {name: 'name', value: '', type: 'text'},
+          {name: 'value', value: '', type: 'number', prefix: 'attach_money'}
+        ]
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (!!result) {
+        this.expenseService.createExpense(result);
+      }
+    });
   }
 }

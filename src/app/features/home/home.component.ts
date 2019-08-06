@@ -3,6 +3,10 @@ import {AuthService} from '../../core/login/auth.service';
 import {Subscription} from 'rxjs';
 import {ActivatedRoute, NavigationStart, Router} from '@angular/router';
 import {filter, tap} from 'rxjs/operators';
+import {DialogFormComponent} from '../dialog-form/dialog-form.component';
+import {MatDialog, MatTableDataSource} from '@angular/material';
+import {Expense} from '../expenses-list/expenses-list.component';
+import {ExpenseService} from '../expense.service';
 
 @Component({
   selector: 'app-home',
@@ -20,7 +24,10 @@ export class HomeComponent implements OnInit, OnDestroy {
   authSubscription: Subscription;
   memberActive: any;
 
-  constructor(private authService: AuthService, private router: Router) {
+  constructor(private authService: AuthService,
+              private router: Router,
+              public dialog: MatDialog,
+              private expenseService: ExpenseService) {
   }
 
   ngOnInit() {
@@ -49,6 +56,25 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   logout() {
     this.authService.logout();
+  }
+
+  newExpense() {
+    const dialogRef = this.dialog.open(DialogFormComponent, {
+      width: '800px',
+      data: {
+        tittle:'Edit Expense',
+        items: [
+          {name: 'name', value: '', type: 'text'},
+          {name: 'value', value: '', type: 'number', prefix: 'attach_money'}
+        ]
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (!!result) {
+        this.expenseService.createExpense(result);
+      }
+    });
   }
 
   ngOnDestroy(): void {

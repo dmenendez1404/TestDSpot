@@ -12,10 +12,10 @@ export class DialogFormComponent {
 
   constructor(
     public dialogRef: MatDialogRef<DialogFormComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any[]) {
+    @Inject(MAT_DIALOG_DATA) public data: any) {
 
     const forms = {}
-    data.forEach((item)=>{
+    data.items.forEach((item)=>{
       forms[item.name]= new FormControl(item.value)
     })
     this.formGroup = new FormGroup(forms)

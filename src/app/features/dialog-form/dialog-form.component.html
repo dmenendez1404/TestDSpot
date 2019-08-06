@@ -2,9 +2,9 @@
   <span class="exit" (click)="this.dialogRef.close()">x</span>
 </div>
 <div>
-  <h2>Change Password</h2>
+  <h2>{{data.tittle}}</h2>
   <form [formGroup]="formGroup">
-    <div class="control-container" *ngFor="let item of data">
+    <div class="control-container" *ngFor="let item of data.items">
       <mat-label>{{item.name}}</mat-label>
       <mat-form-field appearance="outline" *ngIf="item.type!='Date'">
         <input matInput  formControlName="{{item.name}}"

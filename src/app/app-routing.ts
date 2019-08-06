@@ -27,7 +27,7 @@ export const routes: Routes = [
         component: ExpensesPerWeekComponent,
       },{
         path: 'profile',
-        component: HomeComponent,
+        component: DashboardComponent,
       },
     ]
   }

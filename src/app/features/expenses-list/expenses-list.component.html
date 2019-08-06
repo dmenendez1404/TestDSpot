@@ -14,7 +14,8 @@
         <mat-icon matSuffix>filter_list</mat-icon>
       </mat-form-field>
     </div>
-    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    <table mat-table *ngIf="dataSource.data.length > 0"
+           [dataSource]="dataSource" class="mat-elevation-z8">
 
 
       <!-- Name Column -->
@@ -52,13 +53,22 @@
       <tr mat-row *matRowDef="let row; columns: displayedColumns;">
       </tr>
     </table>
-    <div *ngIf="dataSource.data.length === 0" id="no-results">
-      <img src="assets/img/app/table-data-not-found.png">
+    <div *ngIf="dataSource.data.length === 0 && filtering" id="no-results">
+      <img src="assets/img/no%20found.png">
       <p>
         No expense founded in this range.
       </p>
       <button mat-raised-button color="primary"
               class="mat-elevation-z6 w-100 mt-3" (click)="resetList()">Refresh List</button>
+    </div>
+    <div *ngIf="dataSource.data.length === 0 && !filtering" id="no-results">
+      <img src="assets/img/empty.png">
+      <p>
+        No expense recorded at the moment
+      </p>
+      <button mat-raised-button color="primary"
+              class="mat-elevation-z6 w-100 mt-3" class="addExpense"
+              (click)="newExpense()">Add the first one</button>
     </div>
   </mat-card>
 </div>
