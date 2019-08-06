@@ -11,25 +11,10 @@ export interface Expense {
   date: Date;
 }
 
-const DSPOT_MODE_FORMATS = {
-  parse: {
-    dateInput: 'MM/DD/YYYY',
-  },
-  display: {
-    dateInput: 'DDDD MMMM - YYYY',
-    monthYearLabel: 'MMM YYYY',
-    dateA11yLabel: 'LL',
-    monthYearA11yLabel: 'DDDD MMMM YYYY',
-  },
-};
-
 @Component({
   selector: 'app-expenses-list',
   templateUrl: './expenses-list.component.html',
-  styleUrls: ['./expenses-list.component.scss'],
-  providers: [
-    {provide: MAT_DATE_FORMATS, useValue: DSPOT_MODE_FORMATS}
-  ]
+  styleUrls: ['./expenses-list.component.scss']
 })
 export class ExpensesListComponent implements OnInit {
   displayedColumns: string[] = ['name', 'value', 'date', 'actions'];
