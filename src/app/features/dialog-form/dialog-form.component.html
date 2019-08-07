@@ -11,8 +11,10 @@
                required autocomplete="false">
         <mat-icon matPrefix *ngIf="!!item.prefix">{{item.prefix}}</mat-icon>
         <mat-icon matSuffix fix *ngIf="!!item.suffix">{{item.suffix}}</mat-icon>
+        <mat-error *ngIf="formGroup.get(item.name).errors && !!formGroup.get(item.name).errors.required">Field Required</mat-error>
+        <mat-error *ngIf="formGroup.get(item.name).errors && !!formGroup.get(item.name).errors.email">Wrong Format</mat-error>
       </mat-form-field>
-      <mat-form-field *ngIf="item.type=='Date'">
+      <mat-form-field *ngIf="item.type=='Date'" appearance="outline">
         <input matInput
                formControlName="{{item.name}}"
                [matDatepicker]="picker" >
@@ -20,7 +22,7 @@
         <mat-datepicker #picker ></mat-datepicker>
       </mat-form-field>
     </div>
-    <button mat-raised-button [mat-dialog-close]="formGroup.value" class="mat-elevation-z6 saveButton">Ok</button>
-
+    <button mat-raised-button [disabled]="formGroup.invalid" [ngClass]="{'disabled': formGroup.invalid}"
+            [mat-dialog-close]="formGroup.value" class="mat-elevation-z6 saveButton">{{data.buttonText}}</button>
   </form>
 </div>

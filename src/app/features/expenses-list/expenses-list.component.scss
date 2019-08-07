@@ -2,8 +2,10 @@
   background-color: #EFF8F5;
   padding: 50px;
   height: 100%;
+  min-width: 300px;
   mat-card {
     background: white;
+    border-radius: 10px;
     .header {
       display: flex;
       justify-content: space-between;
@@ -38,9 +40,6 @@
           font-weight: normal;
           color: #707070;
         }
-      tr {
-        border-bottom: 1px solid #4B4B4B;
-      }
       td {
         width: 24%;
         font-family: Montserrat;
@@ -54,14 +53,14 @@
       }
     }
     .editButtom {
-      width: 91px;
+      min-width: 55px;
       height: 31px;
       background-image: linear-gradient(180deg, #6AA5E3, #6866E9);
       font-size: 13px;
       margin-right: 22px;
     }
     .deleteButtom {
-      width: 91px;
+      min-width: 55px;
       height: 31px;
       background-color: black;
       font-size: 13px;
@@ -122,5 +121,62 @@
     height: 57px;
     color: white;
     background-image: linear-gradient(180deg, #6FE3FF, #2FC7F5);
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .header{
+    flex-direction: column;
+  }
+  .mat-table {
+    border: 0;
+    vertical-align: middle
+  }
+
+  .mat-table caption {
+    font-size: 1em;
+  }
+
+  .mat-table .mat-header-cell {
+    display: none;
+  }
+
+  .mat-table .mat-row {
+    display: block;
+  }
+
+  td{
+    width: 100%!important;
+    padding: 0px!important;
+  }
+  tr{
+    height: 100%!important;
+    box-shadow: 0px 3px 6px rgb(112, 112, 112, .1);
+    padding: 8px;
+  }
+  .mat-table .mat-cell {
+    display: flex;
+    justify-content: space-between;
+    padding-right: 25px;
+    font-size: 1em;
+    text-align: right;
+    font-weight: bold;
+    height: 30px;
+    margin-bottom: 4%;
+  }
+
+  .mat-table .mat-cell:before {
+    content: attr(data-label);
+    text-transform: uppercase;
+    font-weight: normal;
+    font-size: .85em;
+  }
+
+  .mat-table .mat-cell:last-child {
+    border-bottom: 0;
+  }
+
+  .mat-table .mat-cell:first-child {
+    margin-top: 4%;
   }
 }

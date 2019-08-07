@@ -1,6 +1,6 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {MAT_DATE_FORMATS, MatDialog, MatPaginator, MatTableDataSource} from '@angular/material';
-import {FormControl} from '@angular/forms';
+import {FormControl, Validators} from '@angular/forms';
 import {DialogChangePasswordComponent} from '../dialog-changePassword/dialog-change-password.component';
 import {DialogFormComponent} from '../dialog-form/dialog-form.component';
 import {ExpenseService} from '../expense.service';
@@ -23,6 +23,8 @@ export class ExpensesListComponent implements OnInit {
   generalExpenses = [];
   filtering = false;
 
+  isOverlay = false;
+
   constructor(public dialog: MatDialog, private expenseService: ExpenseService) {
   }
 
@@ -40,19 +42,21 @@ export class ExpensesListComponent implements OnInit {
   }
 
   filterByDate() {
-
+    this.isOverlay = true;
     const dialogRef = this.dialog.open(DialogFormComponent, {
       width: '800px',
       data: {
         tittle: 'Filter By Date',
+        buttonText: 'Filter',
         items: [
-          {name: 'from', value: new Date(), type: 'Date'},
-          {name: 'to', value: new Date(), type: 'Date'}
+          {name: 'from', value: new Date(), type: 'Date', validators:Validators.required},
+          {name: 'to', value: new Date(), type: 'Date', validators:Validators.required}
         ]
       }
     });
 
     dialogRef.afterClosed().subscribe((result: { from: Date, to: Date }) => {
+      this.isOverlay = false
       if (!!result) {
         this.filtering = true;
         const filterList = this.generalExpenses.filter((val) => val.date >= result.from && val.date <= result.to);
@@ -62,17 +66,21 @@ export class ExpensesListComponent implements OnInit {
   }
 
   filterByAmount() {
+    this.isOverlay = true
     const dialogRef = this.dialog.open(DialogFormComponent, {
       width: '800px',
       data: {
         tittle: 'Filter By Amount',
+        buttonText: 'Filter',
         items: [
-          {name: 'amount', value: '', type: 'number', prefix: 'attach_money'}
+          {name: 'amount', value: '', type: 'number',
+            prefix: 'attach_money', validators:Validators.required}
         ]
       }
     });
 
     dialogRef.afterClosed().subscribe(result => {
+      this.isOverlay = false
       if (!!result) {
         this.filtering = true;
         const filterList = this.generalExpenses.filter((val) => val.value === result.amount);
@@ -82,19 +90,23 @@ export class ExpensesListComponent implements OnInit {
   }
 
   editExpense(element) {
+    this.isOverlay = true
     const index = this.generalExpenses.indexOf(element);
     const dialogRef = this.dialog.open(DialogFormComponent, {
       width: '800px',
       data: {
         tittle: 'Edit Expense',
+        buttonText: 'Ok',
         items: [
-          {name: 'name', value: element.name, type: 'text'},
-          {name: 'value', value: element.value, type: 'number', prefix: 'attach_money'}
+          {name: 'name', value: element.name, type: 'text', validators:Validators.required},
+          {name: 'value', value: element.value, type: 'number',
+            prefix: 'attach_money', validators:Validators.required}
         ]
       }
     });
 
     dialogRef.afterClosed().subscribe(result => {
+      this.isOverlay = false
       if (!!result) {
         this.generalExpenses[index].name = result.name;
         this.generalExpenses[index].value = result.value;
@@ -113,6 +125,7 @@ export class ExpensesListComponent implements OnInit {
       width: '800px',
       data: {
         tittle:'Edit Expense',
+        buttonText: 'Ok',
         items: [
           {name: 'name', value: '', type: 'text'},
           {name: 'value', value: '', type: 'number', prefix: 'attach_money'}

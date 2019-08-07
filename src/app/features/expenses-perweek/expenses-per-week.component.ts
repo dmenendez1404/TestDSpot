@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {ExpenseService} from '../expense.service';
 
 @Component({
   selector: 'app-expenses-perweek',
@@ -7,9 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ExpensesPerWeekComponent implements OnInit {
 
-  constructor() { }
+  constructor(private expenseService: ExpenseService) { }
 
   ngOnInit() {
+    this.expenseService.getExpensesByWeek().subscribe((ePW)=>console.log('LLEGO ', ePW))
   }
 
 }

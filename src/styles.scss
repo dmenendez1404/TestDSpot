@@ -88,3 +88,17 @@ $custom-typography: mat-typography-config(
   font-family: Montserrat;
 }
 
+.cdk-overlay-backdrop.cdk-overlay-backdrop-showing {
+  opacity: 0 !important;
+}
+.layer {
+  background-image: linear-gradient(180deg, #6AA5E3, #6866E9);
+  opacity: .62;
+  z-index: 4;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+}

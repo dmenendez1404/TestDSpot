@@ -13,6 +13,7 @@ import {DialogChangePasswordComponent} from '../dialog-changePassword/dialog-cha
 export class DashboardComponent implements OnInit, OnDestroy {
   userForm: FormGroup;
   authSubscription: Subscription;
+  isOverlay = false;
 
   constructor(public fb: FormBuilder, private authService: AuthService, public dialog: MatDialog) {
     this.userForm = this.fb.group({
@@ -36,12 +37,14 @@ export class DashboardComponent implements OnInit, OnDestroy {
   }
 
   changePass() {
+    this.isOverlay = true
     const dialogRef = this.dialog.open(DialogChangePasswordComponent, {
       width: '800px',
       data: {newPassword: ''}
     });
 
     dialogRef.afterClosed().subscribe(result => {
+      this.isOverlay = false
       if (!!result && result !== '') {
         this.authService.changePass(result);
         this.userForm.controls.pass.setValue(result);
