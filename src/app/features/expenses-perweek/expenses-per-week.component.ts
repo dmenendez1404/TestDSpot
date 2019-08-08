@@ -26,7 +26,7 @@ export class ExpensesPerWeekComponent implements OnInit {
     this.weeksCarruselConfig = {
       grid: {xs: 1, sm: 2, md: 3, lg: 4, all: 0},
       slide: 10,
-      speed: 250,
+      speed: 500,
       animation: 'lazy',
       point: {
         visible: true,
@@ -41,8 +41,8 @@ export class ExpensesPerWeekComponent implements OnInit {
     this.expensesPerWeeksCarruselConfig = {
       grid: {xs: 1, sm: 1, md: 1, lg: 1, all: 0},
       slide: 1,
-      speed: 250,
-
+      speed: 500,
+      animation: 'lazy',
       point: {
         visible: true
       },

@@ -46,9 +46,14 @@
         font-size: 15px;
         font-weight: lighter;
         color: #4B4B4B;
+
         &.mat-cell.cdk-column-actions.mat-column-actions {
           width: 25%;
           min-width: 235px;
+          >div{
+            display: flex;
+            justify-content: center;
+          }
         }
       }
     }
