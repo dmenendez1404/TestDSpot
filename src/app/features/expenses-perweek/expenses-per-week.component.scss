@@ -1,0 +1,73 @@
+.container {
+  background-color: #EFF8F5;
+  height: 100%;
+  min-width: 300px;
+  padding: 35px 0px;
+  .header {
+    display: flex;
+    justify-content: flex-end;
+    h2 {
+      font-family: Montserrat;
+      font-size: 12px;
+      color: #707070;
+      font-weight: normal;
+    }
+    mat-card {
+      width: 31px;
+      height: 31px;
+      padding: 0px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 0px 45px 50px 16px;
+    }
+  }
+  ::ng-deep {
+    .tile {
+      box-shadow: none !important;
+    }
+  }
+  #weeksCarrusel {
+    .tile-container {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 75px;
+      &.active {
+        margin-top: -7px;
+        .week-container {
+          width: 250px;
+          background-image: linear-gradient(180deg, #6AA5E3, #6866E9);
+          color: white;
+        }
+      }
+      p {
+        margin: 0px;
+        color: #6866E9;
+        font-size: 12px;
+        font-weight: bold;
+      }
+      .week-container {
+        width: 200px;
+        height: 57px;
+        border-radius: 29px;
+        border: solid 1px #6866E9;
+        color: #6866E9;
+        font-size: 18px;
+        font-family: Montserrat;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 0px 8px;
+
+      }
+    }
+  }
+  #expensesCarrusel{
+    .expenseListContainer{
+      display: flex;
+      justify-content: center;
+    }
+  }
+}

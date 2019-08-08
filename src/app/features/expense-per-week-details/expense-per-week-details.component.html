@@ -1,0 +1,42 @@
+<mat-card class="container">
+  <div class="layer" *ngIf="!isActive"></div>
+<h2>Expenses</h2>
+  <div class="body">
+    <div class="expenses-table">
+      <table mat-table *ngIf="dataSource.data.length > 0"
+             [dataSource]="dataSource" class="mat-elevation-z8">
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef> Name</th>
+          <td mat-cell *matCellDef="let element" data-label="Name"> {{element.name}}</td>
+        </ng-container>
+
+        <!-- Value Column -->
+        <ng-container matColumnDef="value">
+          <th mat-header-cell *matHeaderCellDef> Value</th>
+          <td mat-cell *matCellDef="let element" data-label="Value"> {{element.value}}</td>
+        </ng-container>
+
+        <!-- Date Column -->
+        <ng-container matColumnDef="date">
+          <th mat-header-cell *matHeaderCellDef> Date</th>
+          <td mat-cell *matCellDef="let element" data-label="Date"> {{element.date| date: 'dd MMMM yyyy'}}</td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;">
+        </tr>
+      </table>
+    </div>
+    <div class="expenses-info">
+      <div class="mini-card">
+        <h3>Ave</h3>
+        <h1>${{average| number:'1.0-0'}}</h1>
+      </div>
+      <div class="mini-card">
+        <h3>Total</h3>
+        <h1>${{total| number:'1.0-0'}}</h1>
+      </div>
+    </div>
+  </div>
+</mat-card>

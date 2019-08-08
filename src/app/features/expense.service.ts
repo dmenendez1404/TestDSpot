@@ -35,7 +35,7 @@ export class ExpenseService {
     this.generalExpenses$.next(GENERAL_EXPENSES);
   }
 
-  getExpensesByWeek() {
+  getExpensesByWeek(list = GENERAL_EXPENSES) {
     return from(GENERAL_EXPENSES).pipe(
       groupBy(expense => {
         return this.getWeekOfYear(expense.date);
@@ -76,5 +76,10 @@ export class ExpenseService {
     const today = new Date(Date.now());
     const firstDay: Date = new Date(today.getFullYear(), 0, 1);
     return Math.ceil((((date.valueOf() - firstDay.valueOf()) / 86400000) + firstDay.getDay() + 1) / 7);
+  }
+
+  filterAndGroupByWeek(result){
+    const filterList = GENERAL_EXPENSES.filter((val) => val.date >= result.from && val.date <= result.to);
+    return this.getExpensesByWeek(filterList)
   }
 }

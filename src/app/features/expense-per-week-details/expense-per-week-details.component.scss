@@ -1,0 +1,84 @@
+.container {
+  border-radius: 10px;
+  width: 700px;
+  height: 500px;
+  padding: 50px;
+  display: flex;
+  flex-direction: column;
+  h2 {
+    margin: 0px;
+    color: #6866E9;
+    font-weight: bold;
+    font-size: 29px;
+    font-family: Montserrat;
+  }
+  .body{
+    display: flex;
+    height: 100%;
+    padding: 40px 0px 34px 0px;
+    .expenses-table{
+      width: 70%;
+      padding-right: 24px;
+      table{
+        width: 100%;
+        th{
+          font-weight: bold;
+          font-size: 16px;
+          color: #707070;
+        }
+      }
+    }
+    .expenses-info{
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      width: 30%;
+      .mini-card{
+        border-radius: 10px;
+        width: 200px;
+        height: 200px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        &:first-child{
+          box-shadow: 0px 40px 40px rgb(112,112,112, .08);
+          h3{
+            font-family: Montserrat;
+            font-size: 29px;
+            color: rgb(112,112,112, .5);
+            margin: 0px;
+          }
+          h1{
+            margin: 0px;
+            font-family: Montserrat;
+            font-size: 60px;
+            color: rgb(112,112,112);
+          }
+        }
+        &:last-child{
+          z-index: 2;
+          box-shadow: 0px 40px 40px rgb(104,102,233, .1);
+          h3{
+            font-family: Montserrat;
+            font-size: 29px;
+            opacity: 50%;
+            color: rgb(47,199,245, .5);
+            margin: 0px;
+          }
+          h1{
+            margin: 0px;
+            font-family: Montserrat;
+            font-size: 60px;
+            color: #2FC7F5;
+          }
+        }
+
+      }
+    }
+  }
+  .layer {
+    background-image: linear-gradient(180deg, #EFF8F5, #EFF8F5);
+  }
+
+}

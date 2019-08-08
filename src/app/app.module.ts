@@ -14,6 +14,8 @@ import {ProfileComponent} from './features/profile/profile.component';
 import {ActivatedRouteSnapshot, RouterModule} from '@angular/router';
 import {DialogChangePasswordComponent} from './features/dialog-changePassword/dialog-change-password.component';
 import {DialogFormComponent} from './features/dialog-form/dialog-form.component';
+import {NguCarouselModule} from '@ngu/carousel';
+import { ExpensePerWeekDetailsComponent } from './features/expense-per-week-details/expense-per-week-details.component';
 
 
 @NgModule({
@@ -26,6 +28,7 @@ import {DialogFormComponent} from './features/dialog-form/dialog-form.component'
     ProfileComponent,
     DialogChangePasswordComponent,
     DialogFormComponent,
+    ExpensePerWeekDetailsComponent,
   ],
   imports: [
     BrowserModule,
@@ -34,7 +37,8 @@ import {DialogFormComponent} from './features/dialog-form/dialog-form.component'
     FormsModule,
     ReactiveFormsModule,
     SharedModule,
-    RouterModule
+    RouterModule,
+    NguCarouselModule,
   ],
   providers: [],
   entryComponents: [DialogChangePasswordComponent,

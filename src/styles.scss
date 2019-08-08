@@ -1,11 +1,11 @@
 @import '~@angular/material/theming';
+
 @include mat-core();
 $candy-app-primary: mat-palette($mat-indigo);
-$candy-app-accent:  mat-palette($mat-pink, A200, A100, A400);
-$candy-app-warn:    mat-palette($mat-red);
+$candy-app-accent: mat-palette($mat-pink, A200, A100, A400);
+$candy-app-warn: mat-palette($mat-red);
 $candy-app-theme: mat-light-theme($candy-app-primary, $candy-app-accent, $candy-app-warn);
 @include angular-material-theme($candy-app-theme);
-
 
 @import url('https://fonts.googleapis.com/icon?family=Material+Icons');
 @import url("https://fonts.googleapis.com/css?family=Montserrat:500,700");
@@ -16,7 +16,8 @@ body {
   margin: 0px;
   padding: 0px;
 }
-.mat-dialog-container{
+
+.mat-dialog-container {
   margin-left: 200px;
   margin-right: -150px;
 }
@@ -91,6 +92,7 @@ $custom-typography: mat-typography-config(
 .cdk-overlay-backdrop.cdk-overlay-backdrop-showing {
   opacity: 0 !important;
 }
+
 .layer {
   background-image: linear-gradient(180deg, #6AA5E3, #6866E9);
   opacity: .62;
@@ -102,3 +104,4 @@ $custom-typography: mat-typography-config(
   height: 100%;
   border-radius: 10px;
 }
+

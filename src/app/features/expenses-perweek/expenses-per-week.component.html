@@ -1,1 +1,33 @@
-<p>expenses-perweek works!</p>
+<div class="container">
+  <div class="layer" *ngIf="isOverlay"></div>
+  <div class="header">
+    <h2>Filter by Date</h2>
+    <mat-card (click)="filterByDate(weeksCarrusel,expensesCarrusel)">
+      <mat-icon matSuffix>filter_list</mat-icon>
+    </mat-card>
+  </div>
+  <ngu-carousel #weeksCarrusel id="weeksCarrusel" [inputs]="weeksCarruselConfig"
+                [dataSource]="expensesByWeek">
+    <ngu-tile *nguCarouselDef="let expense; let j = index">
+      <div class="tile-container" [class.active]="j==weeksCarrusel.activePoint">
+        <p>{{j==weeksCarrusel.activePoint? (expense?.week?.firstDayOfWeek |date: 'yyyy'):''}}</p>
+        <div class="week-container"
+             (click)="weeksCarrusel.moveTo(j);expensesCarrusel.moveTo(j)">
+          {{expense?.week?.firstDayOfWeek |date: 'dd MMMM'}} -
+          {{expense?.week?.lastDayOfWeek |date: 'dd MMMM'}}
+        </div>
+      </div>
+    </ngu-tile>
+  </ngu-carousel>
+
+  <ngu-carousel #expensesCarrusel id="expensesCarrusel" [inputs]="expensesPerWeeksCarruselConfig"
+                [dataSource]="expensesByWeek">
+    <ngu-tile *nguCarouselDef="let expense; let j = index">
+      <div class="expenseListContainer">
+        <app-expense-per-week-details [expensesWeek]="expense.expensesPerWeek"
+                                      [isActive]="j==expensesCarrusel.activePoint">
+        </app-expense-per-week-details>
+      </div>
+    </ngu-tile>
+  </ngu-carousel>
+</div>
