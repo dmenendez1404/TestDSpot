@@ -6,24 +6,24 @@
       <mat-icon matSuffix>filter_list</mat-icon>
     </mat-card>
   </div>
-  <ngu-carousel #weeksCarrusel id="weeksCarrusel" [inputs]="weeksCarruselConfig"
-                [dataSource]="expensesByWeek">
-    <ngu-tile *nguCarouselDef="let expense; let j = index">
+  <div id="periods-container" [@simple]="animateStuff" (mousedown)="getMovesPX($event)">
+    <ng-container *ngFor="let expense of expensesByWeek; let j = index">
       <div class="tile-container" [class.active]="j==activePoint">
         <p>{{j==activePoint? (expense?.week?.firstDayOfWeek |date: 'yyyy'):''}}</p>
         <div class="week-container"
-             (click)="activePoint = j;expensesCarrusel.moveTo(j)">
+             (click)="moveToPosition(j); expensesCarrusel.moveTo(j)">
           {{expense?.week?.firstDayOfWeek |date: 'dd MMMM'}} -
           {{expense?.week?.lastDayOfWeek |date: 'dd MMMM'}}
         </div>
+        <div class="ball" *ngIf="j!=activePoint"></div>
       </div>
-    </ngu-tile>
-  </ngu-carousel>
+    </ng-container>
+  </div>
 
   <ngu-carousel #expensesCarrusel id="expensesCarrusel" [inputs]="expensesPerWeeksCarruselConfig"
                 [dataSource]="expensesByWeek">
     <ngu-tile *nguCarouselDef="let expense; let j = index">
-      <div class="expenseListContainer"  (click)="activePoint = j">
+      <div class="expenseListContainer" (click)="activePoint = j">
         <app-expense-per-week-details [expensesWeek]="expense.expensesPerWeek"
                                       [isActive]="j==activePoint">
         </app-expense-per-week-details>

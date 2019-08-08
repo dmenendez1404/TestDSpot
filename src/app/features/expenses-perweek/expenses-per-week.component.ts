@@ -5,11 +5,32 @@ import {MatDialog, MatTableDataSource} from '@angular/material';
 import {DialogFormComponent} from '../dialog-form/dialog-form.component';
 import {Validators} from '@angular/forms';
 import {Expense} from '../expenses-list/expenses-list.component';
+import {
+  trigger,
+  state,
+  style,
+  animate,
+  transition,
+  // ...
+} from '@angular/animations';
+import {fromEvent} from 'rxjs';
 
 @Component({
   selector: 'app-expenses-perweek',
   templateUrl: './expenses-per-week.component.html',
-  styleUrls: ['./expenses-per-week.component.scss']
+  styleUrls: ['./expenses-per-week.component.scss'],
+  animations: [
+    trigger('simple', [
+      state('moveTo', style({
+          'transform': 'translate3d({{pos}}%, 0, 0)',
+        }),
+        {params: {pos: 0}}
+      ),
+      transition('*=>*', [
+        animate('1s ease'),
+      ]),
+    ])
+  ]
 })
 export class ExpensesPerWeekComponent implements OnInit {
 
@@ -17,7 +38,9 @@ export class ExpensesPerWeekComponent implements OnInit {
   public weeksCarruselConfig: NguCarouselConfig;
   public expensesPerWeeksCarruselConfig: NguCarouselConfig;
   isOverlay = false;
-  activePoint;
+  animateStuff = {};
+  activePoint = 0;
+  currentPos = 43;
 
   constructor(private expenseService: ExpenseService, public dialog: MatDialog) {
   }
@@ -76,6 +99,25 @@ export class ExpensesPerWeekComponent implements OnInit {
         });
       }
     });
+  }
+
+
+  moveToPosition(pos: number) {
+    if (pos > this.activePoint)
+      this.currentPos = this.currentPos + (this.activePoint - pos) * 15 - pos;
+    else
+      this.currentPos = this.currentPos + (this.activePoint - pos) * 15 + pos;
+    console.log(this.currentPos);
+    this.animateStuff = {value: 'moveTo', params: {pos: this.currentPos}};
+    this.activePoint = pos;
+  }
+
+  getMovesPX(event) {
+    console.log(event)
+    const initialPos = event.screenX
+    // fromEvent(document,'mousemove').subscribe((e)=>{
+    //   this.animateStuff = {value: 'moveTo', params: {pos: event.screenX - initialPos}};
+    // })
   }
 
 }
