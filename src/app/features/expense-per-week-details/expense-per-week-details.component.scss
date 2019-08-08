@@ -1,7 +1,7 @@
 .container {
   border-radius: 10px;
-  width: 700px;
-  height: 500px;
+  width: 100%;
+  max-height: 700px;
   padding: 50px;
   display: flex;
   flex-direction: column;
@@ -43,6 +43,7 @@
         flex-direction: column;
         &:first-child{
           box-shadow: 0px 40px 40px rgb(112,112,112, .08);
+          margin-bottom:65px;
           h3{
             font-family: Montserrat;
             font-size: 29px;

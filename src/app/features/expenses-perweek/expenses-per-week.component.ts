@@ -32,7 +32,7 @@ export class ExpensesPerWeekComponent implements OnInit {
         visible: true,
       },
       load: 3,
-      easing: 'ease-in',
+      easing: 'ease',
       velocity: 0,
       loop: true,
       touch: true,
@@ -47,7 +47,7 @@ export class ExpensesPerWeekComponent implements OnInit {
         visible: true
       },
       loop: true,
-      touch: false,
+      touch: true,
       custom: 'banner'
     };
     this.expenseService.getExpensesByWeek().subscribe((ePW) => this.expensesByWeek = ePW);

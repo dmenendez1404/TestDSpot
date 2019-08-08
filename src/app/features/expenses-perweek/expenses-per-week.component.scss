@@ -1,6 +1,5 @@
 .container {
   background-color: #EFF8F5;
-  height: 100%;
   min-width: 300px;
   padding: 35px 0px;
   .header {
@@ -26,6 +25,7 @@
     .tile {
       box-shadow: none !important;
     }
+
   }
   #weeksCarrusel {
     .tile-container {
@@ -64,8 +64,25 @@
       }
     }
   }
-  #expensesCarrusel{
-    .expenseListContainer{
+  #expensesCarrusel {
+    ::ng-deep {
+      /*@media screen and (max-width: 2000px) {
+        .item {
+          flex: 0 0 60% !important;
+        }
+      }
+      @media screen and (max-width: 1600px) {
+        .item {
+          flex: 0 0 75% !important;
+        }
+      }
+      @media screen and (max-width: 1300px) {
+        .item {
+          flex: 0 0 90% !important;
+        }
+      }*/
+    }
+    .expenseListContainer {
       display: flex;
       justify-content: center;
     }
