@@ -8,12 +8,18 @@
     div {
       height: 103px;
       width: 25%;
-      min-width: 250px;
+      min-width: 300px;
       background-image: linear-gradient(180deg, #6AA5E3, #6866E9);
       display: flex;
       align-items: center;
-      justify-content: center;
-      img {
+      justify-content: flex-start;
+      img:first-child{
+        width: 18px;
+        height: 18px;
+        margin-left: 50px;
+        margin-right: 2%;
+      }
+      img:last-child {
         width: 216px;
         height: 47px;
       }
@@ -24,12 +30,10 @@
       margin: 32px;
     }
   }
-  .body {
-    display: flex;
-    width: 100%;
-    height: 100vh;
+  mat-drawer-container {
+    height: calc(100vh - 103px);
     .menu-container {
-      min-width: 250px;
+      min-width: 300px;
       width: 25%;
       background-color: white;
       display: -webkit-box;
@@ -40,7 +44,7 @@
         flex-direction: column;
         .info {
           display: flex;
-          padding: 70px 50px 0px 50px;
+          padding: 0px 50px 0px 50px;
           .profile-pic-menu {
             width: 52px;
             height: 52px;
@@ -110,16 +114,18 @@
         display: flex;
         align-items: center;
         padding-left: 16px;
+        position: absolute;
+        bottom: 0;
         &:hover {
           cursor: pointer;
         }
       }
     }
     .panel-container {
-      width: 75%;
+      height: 100%;
       background-color: #EFF8F5;
+      overflow-x: hidden;
     }
   }
 
 }
-

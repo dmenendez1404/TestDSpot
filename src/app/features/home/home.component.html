@@ -1,12 +1,18 @@
 <div class="container">
   <mat-toolbar class="top-toolbar">
     <div>
+      <img [src]="sidenav.opened? '../../../assets/img/menu_open.png':'../../../assets/img/menu_close.png'"
+      (click)="sidenav.toggle()">
       <img src="../../../assets/img/logo_sidebar.png">
     </div>
     <img class="profile-pic" src="../../../assets/img/profile-pic.png">
   </mat-toolbar>
-  <div class="body">
-    <div class="menu-container">
+  <mat-drawer-container>
+
+    <mat-drawer #sidenav [opened]="true"
+                [mode]="'side'" class="sidenav mat-elevation-z6 menu-container" autoFocus="false">
+      <mat-toolbar class="top-toolbar sidenav-fixed">
+      </mat-toolbar>
       <div class="top-menu">
         <div class="info">
           <img class="profile-pic-menu" src="../../../assets/img/profile-pic.png">
@@ -28,9 +34,11 @@
       <div class="logout" (click)="logout()">
         <img src="../../../assets/img/logout.png">
       </div>
-    </div>
-    <div class="panel-container">
-      <router-outlet></router-outlet>
-    </div>
-  </div>
+    </mat-drawer>
+    <mat-drawer-content>
+      <div class="panel-container">
+        <router-outlet></router-outlet>
+      </div>
+    </mat-drawer-content>
+  </mat-drawer-container>
 </div>
