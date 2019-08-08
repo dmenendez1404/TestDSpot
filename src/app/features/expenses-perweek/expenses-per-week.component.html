@@ -2,17 +2,17 @@
   <div class="layer" *ngIf="isOverlay"></div>
   <div class="header">
     <h2>Filter by Date</h2>
-    <mat-card (click)="filterByDate(weeksCarrusel,expensesCarrusel)">
+    <mat-card (click)="filterByDate()">
       <mat-icon matSuffix>filter_list</mat-icon>
     </mat-card>
   </div>
   <ngu-carousel #weeksCarrusel id="weeksCarrusel" [inputs]="weeksCarruselConfig"
                 [dataSource]="expensesByWeek">
     <ngu-tile *nguCarouselDef="let expense; let j = index">
-      <div class="tile-container" [class.active]="j==weeksCarrusel.activePoint">
-        <p>{{j==weeksCarrusel.activePoint? (expense?.week?.firstDayOfWeek |date: 'yyyy'):''}}</p>
+      <div class="tile-container" [class.active]="j==activePoint">
+        <p>{{j==activePoint? (expense?.week?.firstDayOfWeek |date: 'yyyy'):''}}</p>
         <div class="week-container"
-             (click)="weeksCarrusel.moveTo(j);expensesCarrusel.moveTo(j)">
+             (click)="activePoint = j;expensesCarrusel.moveTo(j)">
           {{expense?.week?.firstDayOfWeek |date: 'dd MMMM'}} -
           {{expense?.week?.lastDayOfWeek |date: 'dd MMMM'}}
         </div>

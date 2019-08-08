@@ -36,7 +36,7 @@ export class ExpenseService {
   }
 
   getExpensesByWeek(list = GENERAL_EXPENSES) {
-    return from(GENERAL_EXPENSES).pipe(
+    return from(list).pipe(
       groupBy(expense => {
         return this.getWeekOfYear(expense.date);
       }),

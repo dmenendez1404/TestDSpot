@@ -17,6 +17,7 @@ export class ExpensesPerWeekComponent implements OnInit {
   public weeksCarruselConfig: NguCarouselConfig;
   public expensesPerWeeksCarruselConfig: NguCarouselConfig;
   isOverlay = false;
+  activePoint;
 
   constructor(private expenseService: ExpenseService, public dialog: MatDialog) {
   }
@@ -52,7 +53,7 @@ export class ExpensesPerWeekComponent implements OnInit {
     this.expenseService.getExpensesByWeek().subscribe((ePW) => this.expensesByWeek = ePW);
   }
 
-  filterByDate(weeksCarrusel: NguCarousel, expensesCarrusel: NguCarousel) {
+  filterByDate() {
     this.isOverlay = true;
     const dialogRef = this.dialog.open(DialogFormComponent, {
       width: '800px',
@@ -71,8 +72,7 @@ export class ExpensesPerWeekComponent implements OnInit {
       if (!!result) {
         this.expenseService.filterAndGroupByWeek(result).subscribe((res) => {
           this.expensesByWeek = res;
-          weeksCarrusel.dataSource = res;
-          expensesCarrusel.dataSource = res;
+
         });
       }
     });
