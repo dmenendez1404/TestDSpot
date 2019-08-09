@@ -2,6 +2,9 @@
   background-color: #EFF8F5;
   padding: 50px;
   min-width: 300px;
+  #responsive-div {
+    display: none
+  }
   mat-card {
     background: white;
     border-radius: 10px;
@@ -184,10 +187,10 @@ mat-form-field {
       font-family: Montserrat;
       font-weight: normal;
     }
-    mat-form-field{
+    mat-form-field {
       min-width: 106px !important;
       width: 106px;
-      .mat-select-value-text, .mat-placeholder{
+      .mat-select-value-text, .mat-placeholder {
         font-family: Montserrat;
         font-size: 12px;
         color: #707070;
@@ -195,7 +198,7 @@ mat-form-field {
       }
     }
   }
-  .expense-card{
+  .expense-card {
     min-width: 300px;
     height: 122px;
     display: flex;
@@ -203,25 +206,25 @@ mat-form-field {
     border-radius: 10px;
     margin-bottom: 25px;
     box-shadow: 0px 3px 6px rgba(157, 206, 255, 0.16);
-    .info-card{
+    .info-card {
       display: flex;
       flex-direction: column;
       justify-content: space-between;
       width: 65%;
-      h2{
+      h2 {
         margin: 0px;
         font-size: 15px;
         color: #4B4B4B;
         font-family: Montserrat;
       }
-      h3{
+      h3 {
         margin: 0px;
         font-size: 11px;
         color: #4B4B4B;
         font-weight: lighter;
         font-family: Montserrat;
       }
-      h1{
+      h1 {
         margin: 0px;
         font-size: 36px;
         color: #000000;
@@ -229,7 +232,7 @@ mat-form-field {
         font-family: Montserrat;
       }
     }
-    .action-card{
+    .action-card {
       display: flex;
       flex-direction: column;
       justify-content: space-around;
