@@ -24,7 +24,8 @@ form {
   justify-content: space-between;
   align-items: center;
   .saveButton {
-    width: 265px;
+    min-width: 150px;
+    max-width: 250px;
     height: 47px;
     color: white;
     background-color: rgb(112, 112, 112, .6);
@@ -33,7 +34,7 @@ form {
   .control-container {
     display: flex;
     flex-direction: column;
-    min-width: 150px;
+    min-width: 100px;
     max-width: 250px;
     margin-right: 12px;
   }
@@ -52,4 +53,14 @@ h2 {
 }
 .disabled{
   background-image: none!important;
+}
+
+@media screen and (max-width: 525px) {
+  form{
+    flex-wrap: wrap;
+    justify-content: center;
+    .control-container{
+      width: 90% !important;
+    }
+  }
 }

@@ -105,3 +105,18 @@ $custom-typography: mat-typography-config(
   border-radius: 10px;
 }
 
+
+@media screen and (max-width: 1250px) {
+    .mat-dialog-container {
+      margin-left: 250px!important;
+      margin-right: -61px!important;
+    }
+}
+
+
+@media screen and (max-width: 900px) {
+    .mat-dialog-container {
+      margin-left: 0px !important;
+      margin-right: 0px !important;
+    }
+}
