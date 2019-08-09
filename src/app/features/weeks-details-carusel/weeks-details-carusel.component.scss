@@ -1,0 +1,23 @@
+#periods-details-container {
+  display: flex;
+  justify-content: space-between;
+  transform: translateX(45%);
+  .expenseListDetailsContainer {
+    margin: 50px 5%;
+    width: fit-content;
+  }
+}
+
+@media screen and (max-width: 1400px) {
+  .expenseListDetailsContainer {
+    margin: 50px 6% !important;
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .expenseListDetailsContainer {
+    margin: 50px 7% !important;
+  }
+}
+
+

@@ -7,6 +7,7 @@ import {DialogFormComponent} from '../dialog-form/dialog-form.component';
 import {MatDialog, MatTableDataSource} from '@angular/material';
 import {Expense} from '../expenses-list/expenses-list.component';
 import {ExpenseService} from '../expense.service';
+import {SettingsService} from '../../shared/settings.service';
 
 @Component({
   selector: 'app-home',
@@ -28,21 +29,25 @@ export class HomeComponent implements OnInit, OnDestroy {
   constructor(private authService: AuthService,
               private router: Router,
               public dialog: MatDialog,
-              private expenseService: ExpenseService) {
+              private expenseService: ExpenseService,
+              private settingsService: SettingsService) {
   }
   @HostListener('window:resize')
   public onWindowResize(): void {
     if (window.innerWidth <= 900) {
+      this.settingsService.setSideNaveState(false)
       this.sidenavIsOpened = false;
       this.sidenavIsPinned = false;
     }else{
+      this.settingsService.setSideNaveState(true)
       this.sidenavIsOpened = true;
       this.sidenavIsPinned = true;
     }
-
   }
+
   ngOnInit() {
     if (window.innerWidth <= 900) {
+      this.settingsService.setSideNaveState(false)
       this.sidenavIsOpened = false;
       this.sidenavIsPinned = false;
     }
@@ -94,5 +99,10 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.authSubscription.unsubscribe();
+  }
+  toggleSideNav(sideNav){
+    sideNav.toggle()
+    this.sidenavIsOpened = !this.sidenavIsOpened;
+    this.settingsService.setSideNaveState(this.sidenavIsOpened)
   }
 }

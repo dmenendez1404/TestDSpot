@@ -3,7 +3,7 @@
     <div class="tile-container" [class.active]="j==activePoint">
       <p>{{j==activePoint? (expense?.week?.firstDayOfWeek |date: 'yyyy'):''}}</p>
       <div class="week-container"
-           (click)="moveToPosition(j); expensesCarrusel.moveTo(j)">
+           (click)="moveToPosition(j);">
         {{expense?.week?.firstDayOfWeek |date: 'dd MMMM'}} -
         {{expense?.week?.lastDayOfWeek |date: 'dd MMMM'}}
       </div>

@@ -1,0 +1,9 @@
+<div id="periods-details-container" [@simple]="animateStuff" (mousedown)="getMovesPX($event)">
+  <ng-container *ngFor="let expense of expensesByWeek; let j = index" >
+    <div class="expenseListDetailsContainer" >
+      <app-expense-per-week-details [expensesWeek]="expense.expensesPerWeek"
+                                    [isActive]="j==activePoint">
+      </app-expense-per-week-details>
+    </div>
+  </ng-container>
+</div>

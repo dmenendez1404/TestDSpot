@@ -18,26 +18,12 @@ export class ExpensesPerWeekComponent implements OnInit {
   public expensesPerWeeksCarruselConfig: NguCarouselConfig;
   isOverlay = false;
 
+  weekSelected = 0;
 
   constructor(private expenseService: ExpenseService, public dialog: MatDialog) {
   }
 
-  ngOnInit(){
-    this.weeksCarruselConfig = {
-      grid: {xs: 1, sm: 2, md: 3, lg: 4, all: 0},
-      slide: 10,
-      speed: 500,
-      animation: 'lazy',
-      point: {
-        visible: true,
-      },
-      load: 3,
-      easing: 'ease',
-      velocity: 0,
-      loop: true,
-      touch: true,
-      custom: 'banner'
-    };
+  ngOnInit() {
     this.expensesPerWeeksCarruselConfig = {
       grid: {xs: 1, sm: 1, md: 1, lg: 1, all: 0},
       slide: 1,
@@ -78,5 +64,9 @@ export class ExpensesPerWeekComponent implements OnInit {
     });
   }
 
+  move(pos, carrusel) {
+    this.weekSelected = pos;
+    carrusel.moveToPosition(pos);
+  }
 
 }

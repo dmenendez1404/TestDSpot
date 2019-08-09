@@ -1,13 +1,8 @@
-import {Component, HostListener, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, HostListener, Input, OnInit, Output} from '@angular/core';
 import {animate, state, style, transition, trigger} from '@angular/animations';
-import {
-  trigger,
-  state,
-  style,
-  animate,
-  transition,
-  // ...
-} from '@angular/animations';
+import {skip} from 'rxjs/operators';
+import {SettingsService} from '../../shared/settings.service';
+import {fromEvent} from 'rxjs';
 
 @Component({
   selector: 'app-weeks-periods-carusel',
@@ -28,11 +23,12 @@ import {
 })
 export class WeeksPeriodsCaruselComponent implements OnInit {
   @Input() expensesByWeek: any[];
+  @Output() moveTo: EventEmitter<any> = new EventEmitter<any>();
   animateStuff = {};
   activePoint = 0;
   currentPos = 0;
 
-  constructor() {
+  constructor(private settingsService: SettingsService) {
   }
 
   @HostListener('window:resize')
@@ -42,7 +38,9 @@ export class WeeksPeriodsCaruselComponent implements OnInit {
       this.currentPos = widthScreen / 2 - 120;
     else
       this.currentPos = (widthScreen - widthScreen * 0.25) / 2 - 100;
-    this.animateStuff = {value: 'moveTo', params: {pos: this.currentPos}};
+    const pos = this.activePoint
+    this.activePoint = 0
+    this.moveToPosition(pos);
   }
 
   ngOnInit() {
@@ -52,6 +50,19 @@ export class WeeksPeriodsCaruselComponent implements OnInit {
     else
       this.currentPos = (widthScreen - widthScreen * 0.25) / 2 - 100;
     this.animateStuff = {value: 'moveTo', params: {pos: this.currentPos}};
+
+    this.settingsService.getSideNavState().pipe(skip(1))
+      .subscribe(value => {
+        if (value) {
+          this.currentPos = (widthScreen - widthScreen * 0.25) / 2 - 100;
+        }
+        else {
+          this.currentPos = widthScreen / 2 - 120;
+        }
+        const pos = this.activePoint
+        this.activePoint = 0
+        this.moveToPosition(pos);
+      });
   }
 
   moveToPosition(pos: number) {
@@ -61,13 +72,15 @@ export class WeeksPeriodsCaruselComponent implements OnInit {
       this.currentPos = this.currentPos + (this.activePoint - pos) * 242;
     this.animateStuff = {value: 'moveTo', params: {pos: this.currentPos}};
     this.activePoint = pos;
+    this.moveTo.emit(pos)
   }
 
   getMovesPX(event) {
-    console.log(event);
-    const initialPos = event.screenX;
-    // fromEvent(document,'mousemove').subscribe((e)=>{
-    //   this.animateStuff = {value: 'moveTo', params: {pos: event.screenX - initialPos}};
-    // })
+    // console.log(event);
+    // const initialPos = event.screenX;
+    //  fromEvent(document,'mousemove').subscribe((e)=>{
+    //    this.currentPos = this.currentPos + (initialPos - e['screenX'])
+    //    this.animateStuff = {value: 'moveTo', params: {pos: this.currentPos}};
+    //  })
   }
 }
