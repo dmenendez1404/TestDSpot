@@ -174,8 +174,8 @@ mat-form-field {
   .container {
     padding: 14px !important;
   }
-  .responsive-div {
-    display: flex;
+  #responsive-div {
+    display: flex!important;
     flex-direction: column;
   }
   .header {
