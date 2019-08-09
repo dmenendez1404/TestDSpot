@@ -1,0 +1,13 @@
+<div id="periods-container" [@simple]="animateStuff" (mousedown)="getMovesPX($event)">
+  <ng-container *ngFor="let expense of expensesByWeek; let j = index">
+    <div class="tile-container" [class.active]="j==activePoint">
+      <p>{{j==activePoint? (expense?.week?.firstDayOfWeek |date: 'yyyy'):''}}</p>
+      <div class="week-container"
+           (click)="moveToPosition(j); expensesCarrusel.moveTo(j)">
+        {{expense?.week?.firstDayOfWeek |date: 'dd MMMM'}} -
+        {{expense?.week?.lastDayOfWeek |date: 'dd MMMM'}}
+      </div>
+      <div class="ball" *ngIf="j!=activePoint"></div>
+    </div>
+  </ng-container>
+</div>

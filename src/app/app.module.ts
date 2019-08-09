@@ -16,6 +16,7 @@ import {DialogChangePasswordComponent} from './features/dialog-changePassword/di
 import {DialogFormComponent} from './features/dialog-form/dialog-form.component';
 import {NguCarouselModule} from '@ngu/carousel';
 import { ExpensePerWeekDetailsComponent } from './features/expense-per-week-details/expense-per-week-details.component';
+import { WeeksPeriodsCaruselComponent } from './core/weeks-periods-carusel/weeks-periods-carusel.component';
 
 
 @NgModule({
@@ -29,6 +30,7 @@ import { ExpensePerWeekDetailsComponent } from './features/expense-per-week-deta
     DialogChangePasswordComponent,
     DialogFormComponent,
     ExpensePerWeekDetailsComponent,
+    WeeksPeriodsCaruselComponent,
   ],
   imports: [
     BrowserModule,
