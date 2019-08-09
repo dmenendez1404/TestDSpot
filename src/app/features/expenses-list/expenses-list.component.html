@@ -99,10 +99,10 @@
           <h1>${{expense.value}}</h1>
         </div>
         <div class="action-card">
-          <button mat-raised-button color="primary" (click)="editExpense(element)"
+          <button mat-raised-button color="primary" (click)="editExpense(expense)"
                   class="mat-elevation-z6 w-100 mt-3 editButtomR">EDIT
           </button>
-          <button mat-raised-button color="primary" (click)="remove(element)"
+          <button mat-raised-button color="primary" (click)="remove(expense)"
                   class="mat-elevation-z6 w-100 mt-3 deleteButtomR">DELETE
           </button>
         </div>
