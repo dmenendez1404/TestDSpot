@@ -40,7 +40,7 @@
       <!-- Actions Column -->
       <ng-container matColumnDef="actions">
         <th mat-header-cell *matHeaderCellDef></th>
-        <td mat-cell *matCellDef="let element" data-label="Acciones">
+        <td mat-cell *matCellDef="let element" data-label="Acciones" class="actions_td">
           <div>
             <button mat-raised-button color="primary" (click)="editExpense(element)"
                     class="mat-elevation-z6 w-100 mt-3 editButtom">EDIT
@@ -56,7 +56,7 @@
       <tr mat-row *matRowDef="let row; columns: displayedColumns;">
       </tr>
     </table>
-    <div *ngIf="dataSource.data.length === 0 && filtering" id="no-results">
+    <div *ngIf="dataSource.data.length === 0 && filtering" class="no-results">
       <img src="assets/img/no%20found.png">
       <p>
         No expense founded in this range.
@@ -65,7 +65,7 @@
               class="mat-elevation-z6 w-100 mt-3" (click)="resetList()">Refresh List
       </button>
     </div>
-    <div *ngIf="dataSource.data.length === 0 && !filtering" id="no-results">
+    <div *ngIf="dataSource.data.length === 0 && !filtering" class="no-results">
       <img src="assets/img/empty.png">
       <p>
         No expense recorded at the moment
@@ -76,4 +76,38 @@
       </button>
     </div>
   </mat-card>
+  <div id="responsive-div">
+    <div class="header">
+      <h2 id="page-title">General expenses</h2>
+      <mat-form-field appearance="none">
+        <mat-select placeholder="Filters" [formControl]="filterForm">
+          <div class="header-select">
+            <p>Filter by</p>
+            <mat-icon>filter_list</mat-icon>
+          </div>
+          <mat-option value="Date" (click)="filterByDate()">Date</mat-option>
+          <mat-option value="Amount" (click)="filterByAmount()">Amount</mat-option>
+        </mat-select>
+        <mat-icon matSuffix>filter_list</mat-icon>
+      </mat-form-field>
+    </div>
+    <ng-container *ngFor="let expense of generalExpenses">
+      <mat-card class="expense-card">
+        <div class="info-card">
+          <h2>{{expense.name}}</h2>
+          <h3>{{expense.date| date:'dd MMMM yyyy'}}</h3>
+          <h1>${{expense.value}}</h1>
+        </div>
+        <div class="action-card">
+          <button mat-raised-button color="primary" (click)="editExpense(element)"
+                  class="mat-elevation-z6 w-100 mt-3 editButtomR">EDIT
+          </button>
+          <button mat-raised-button color="primary" (click)="remove(element)"
+                  class="mat-elevation-z6 w-100 mt-3 deleteButtomR">DELETE
+          </button>
+        </div>
+      </mat-card>
+
+    </ng-container>
+  </div>
 </div>
