@@ -2,43 +2,21 @@
   background-color: #EFF8F5;
   padding: 50px;
   min-width: 300px;
+  #responsive-div {
+    display: none
+  }
   mat-card {
     background: white;
     border-radius: 10px;
-    .header {
-      display: flex;
-      justify-content: space-between;
-      padding: 0px 24px;
-      align-items: center;
-      h2 {
-        color: #707070;
-      }
-      mat-form-field{
-        box-shadow: 0px 2px 10px rgba(0, 0, 0, .1);
-        width: 205px;
-        height: 31px;
-        mat-select{
-          width: 205px;
-          height: 31px;
-          border-radius: 5px;
-        }
-        mat-icon{
-          color: #000;
-          font-size: 19px;
-          background: white;
-          margin: -15px 0px 0px 0px;
-        }
-      }
-    }
     table {
       width: 100%;
-        th{
-          border-bottom-width: 0px;
-          font-family: Montserrat;
-          font-size: 16px;
-          font-weight: normal;
-          color: #707070;
-        }
+      th {
+        border-bottom-width: 0px;
+        font-family: Montserrat;
+        font-size: 16px;
+        font-weight: normal;
+        color: #707070;
+      }
       td {
         width: 24%;
         font-family: Montserrat;
@@ -49,7 +27,7 @@
         &.mat-cell.cdk-column-actions.mat-column-actions {
           width: 25%;
           min-width: 235px;
-          >div{
+          > div {
             display: flex;
             justify-content: center;
           }
@@ -70,22 +48,55 @@
       font-size: 13px;
     }
   }
-
 }
-.header-select{
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  padding: 0px 24px;
+  align-items: center;
+  h2 {
+    color: #707070;
+  }
+}
+
+.header-select {
   display: flex;
   justify-content: flex-end;
   background-image: linear-gradient(180deg, #6FE3FF, #2FC7F5);
   height: 31px;
   align-items: center;
-  p{
+  p {
     color: white;
     width: fit-content;
     margin: 0px 50px 0px 0px;
   }
-  mat-icon{
+  mat-icon {
     margin-right: 8px;
     color: white;
+  }
+}
+
+mat-form-field {
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, .1);
+  min-width: 150px;
+  height: 31px;
+  background-color: white;
+  mat-select {
+    height: 31px;
+    border-radius: 5px;
+    ::ng-deep {
+      .mat-select-arrow {
+        border: 0px !important;
+      }
+    }
+  }
+  mat-icon {
+    color: #000;
+    font-size: 19px;
+    background: white;
+    margin: -17px 0px 0px -30px;
+    position: absolute;
   }
 }
 
@@ -97,7 +108,8 @@
     }
   }
 }
-#no-results{
+
+.no-results {
   width: 100%;
   height: 500px;
   background-color: rgb(112, 112, 112, .3);
@@ -105,7 +117,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  p{
+  p {
     font-size: 28px;
     font-family: Montserrat;
     font-weight: bold;
@@ -113,14 +125,14 @@
     text-align: center;
     color: rgb(112, 112, 112, .5);;
   }
-  button{
+  button {
     border-radius: 5px;
     width: 256px;
     height: 57px;
     font-size: 18px;
     color: white;
   }
-  .addExpense{
+  .addExpense {
     width: 265px;
     height: 57px;
     color: white;
@@ -129,58 +141,115 @@
 }
 
 @media screen and (max-width: 1000px) {
-  .header{
-    flex-direction: column;
+
+  th {
+    width: 25% !important;
+    font-size: 14px !important;
   }
-  .mat-table {
-    border: 0;
-    vertical-align: middle
+  td {
+    font-size: 12px !important;
+  }
+  .editButtom, .deleteButtom {
+    padding: 8px !important;
+    min-width: 35px;
+    font-size: 12px;
+    display: flex;
+    ::ng-deep {
+      span.mat-button-wrapper {
+        margin: -25% 5% !important;
+      }
+    }
   }
 
-  .mat-table caption {
-    font-size: 1em;
+  .actions_td {
+    min-width: 135px !important;
   }
 
-  .mat-table .mat-header-cell {
+}
+
+@media screen and (max-width: 600px) {
+  mat-card {
     display: none;
   }
-
-  .mat-table .mat-row {
-    display: block;
+  .container {
+    padding: 14px !important;
   }
-
-  td{
-    width: 100%!important;
-    padding: 0px!important;
+  #responsive-div {
+    display: flex!important;
+    flex-direction: column;
   }
-  tr{
-    height: 100%!important;
-    box-shadow: 0px 3px 6px rgb(112, 112, 112, .1);
-    padding: 8px;
-  }
-  .mat-table .mat-cell {
+  .header {
     display: flex;
     justify-content: space-between;
-    padding-right: 25px;
-    font-size: 1em;
-    text-align: right;
-    font-weight: bold;
-    height: 30px;
-    margin-bottom: 4%;
+    margin-bottom: 30px;
+    #page-title {
+      font-size: 20px;
+      font-family: Montserrat;
+      font-weight: normal;
+    }
+    mat-form-field {
+      min-width: 106px !important;
+      width: 106px;
+      .mat-select-value-text, .mat-placeholder {
+        font-family: Montserrat;
+        font-size: 12px;
+        color: #707070;
+        opacity: 50%;
+      }
+    }
   }
-
-  .mat-table .mat-cell:before {
-    content: attr(data-label);
-    text-transform: uppercase;
-    font-weight: normal;
-    font-size: .85em;
-  }
-
-  .mat-table .mat-cell:last-child {
-    border-bottom: 0;
-  }
-
-  .mat-table .mat-cell:first-child {
-    margin-top: 4%;
+  .expense-card {
+    min-width: 300px;
+    height: 122px;
+    display: flex;
+    padding: 20px 15px;
+    border-radius: 10px;
+    margin-bottom: 25px;
+    box-shadow: 0px 3px 6px rgba(157, 206, 255, 0.16);
+    .info-card {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      width: 65%;
+      h2 {
+        margin: 0px;
+        font-size: 15px;
+        color: #4B4B4B;
+        font-family: Montserrat;
+      }
+      h3 {
+        margin: 0px;
+        font-size: 11px;
+        color: #4B4B4B;
+        font-weight: lighter;
+        font-family: Montserrat;
+      }
+      h1 {
+        margin: 0px;
+        font-size: 36px;
+        color: #000000;
+        font-weight: bold;
+        font-family: Montserrat;
+      }
+    }
+    .action-card {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      align-items: center;
+      width: 40%;
+      .editButtomR {
+        width: 100%;
+        height: 41px;
+        background-image: linear-gradient(180deg, #6AA5E3, #6866E9);
+        font-size: 13px;
+      }
+      .deleteButtomR {
+        width: 100%;
+        height: 41px;
+        background-color: black;
+        font-size: 13px;
+      }
+    }
   }
 }

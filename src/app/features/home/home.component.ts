@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, HostListener, OnDestroy, OnInit} from '@angular/core';
 import {AuthService} from '../../core/login/auth.service';
 import {Subscription} from 'rxjs';
 import {ActivatedRoute, NavigationStart, Router} from '@angular/router';
@@ -23,14 +23,29 @@ export class HomeComponent implements OnInit, OnDestroy {
   ];
   authSubscription: Subscription;
   memberActive: any;
-
+  sidenavIsOpened = true;
+  sidenavIsPinned = true;
   constructor(private authService: AuthService,
               private router: Router,
               public dialog: MatDialog,
               private expenseService: ExpenseService) {
   }
+  @HostListener('window:resize')
+  public onWindowResize(): void {
+    if (window.innerWidth <= 900) {
+      this.sidenavIsOpened = false;
+      this.sidenavIsPinned = false;
+    }else{
+      this.sidenavIsOpened = true;
+      this.sidenavIsPinned = true;
+    }
 
+  }
   ngOnInit() {
+    if (window.innerWidth <= 900) {
+      this.sidenavIsOpened = false;
+      this.sidenavIsPinned = false;
+    }
     this.authSubscription = this.authService.getMemberActive().subscribe((user) => {
       this.memberActive = user;
     });
