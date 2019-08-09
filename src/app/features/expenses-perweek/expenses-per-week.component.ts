@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, HostListener, OnInit} from '@angular/core';
 import {ExpenseService} from '../expense.service';
 import {NguCarousel, NguCarouselConfig} from '@ngu/carousel';
 import {MatDialog, MatTableDataSource} from '@angular/material';
@@ -22,7 +22,7 @@ import {fromEvent} from 'rxjs';
   animations: [
     trigger('simple', [
       state('moveTo', style({
-          'transform': 'translate3d({{pos}}%, 0, 0)',
+          'transform': 'translate3d({{pos}}px, 0, 0)',
         }),
         {params: {pos: 0}}
       ),
@@ -40,12 +40,29 @@ export class ExpensesPerWeekComponent implements OnInit {
   isOverlay = false;
   animateStuff = {};
   activePoint = 0;
-  currentPos = 43;
+  currentPos = 0;
+  halfWidthPosition=0;
 
   constructor(private expenseService: ExpenseService, public dialog: MatDialog) {
   }
-
+  @HostListener('window:resize')
+  public onWindowResize(): void {
+    const widthScreen = window.innerWidth;
+    if (widthScreen < 900)
+      this.currentPos = widthScreen / 2 - 120;
+    else
+      this.currentPos = (widthScreen - widthScreen * 0.25) / 2 - 100;
+    this.animateStuff = {value: 'moveTo', params: {pos: this.currentPos}};
+  }
   ngOnInit() {
+
+    const widthScreen = window.innerWidth;
+    if (widthScreen < 900)
+      this.currentPos = widthScreen / 2 - 120;
+    else
+      this.currentPos = (widthScreen - widthScreen * 0.25) / 2 - 100;
+    this.animateStuff = {value: 'moveTo', params: {pos: this.currentPos}};
+
     this.weeksCarruselConfig = {
       grid: {xs: 1, sm: 2, md: 3, lg: 4, all: 0},
       slide: 10,
@@ -104,17 +121,16 @@ export class ExpensesPerWeekComponent implements OnInit {
 
   moveToPosition(pos: number) {
     if (pos > this.activePoint)
-      this.currentPos = this.currentPos + (this.activePoint - pos) * 15 - pos;
+      this.currentPos = this.currentPos + (this.activePoint - pos) * 242;
     else
-      this.currentPos = this.currentPos + (this.activePoint - pos) * 15 + pos;
-    console.log(this.currentPos);
+      this.currentPos = this.currentPos + (this.activePoint - pos) * 242;
     this.animateStuff = {value: 'moveTo', params: {pos: this.currentPos}};
     this.activePoint = pos;
   }
 
   getMovesPX(event) {
-    console.log(event)
-    const initialPos = event.screenX
+    console.log(event);
+    const initialPos = event.screenX;
     // fromEvent(document,'mousemove').subscribe((e)=>{
     //   this.animateStuff = {value: 'moveTo', params: {pos: event.screenX - initialPos}};
     // })
