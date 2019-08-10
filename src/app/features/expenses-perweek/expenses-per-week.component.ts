@@ -1,15 +1,15 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, HostListener, OnInit} from '@angular/core';
 import {ExpenseService} from '../expense.service';
 import {NguCarousel, NguCarouselConfig} from '@ngu/carousel';
 import {MatDialog, MatTableDataSource} from '@angular/material';
 import {DialogFormComponent} from '../dialog-form/dialog-form.component';
 import {Validators} from '@angular/forms';
-import {Expense} from '../expenses-list/expenses-list.component';
 
 @Component({
   selector: 'app-expenses-perweek',
   templateUrl: './expenses-per-week.component.html',
-  styleUrls: ['./expenses-per-week.component.scss']
+  styleUrls: ['./expenses-per-week.component.scss'],
+
 })
 export class ExpensesPerWeekComponent implements OnInit {
 
@@ -17,27 +17,13 @@ export class ExpensesPerWeekComponent implements OnInit {
   public weeksCarruselConfig: NguCarouselConfig;
   public expensesPerWeeksCarruselConfig: NguCarouselConfig;
   isOverlay = false;
-  activePoint;
+
+  weekSelected = 0;
 
   constructor(private expenseService: ExpenseService, public dialog: MatDialog) {
   }
 
   ngOnInit() {
-    this.weeksCarruselConfig = {
-      grid: {xs: 1, sm: 2, md: 3, lg: 4, all: 0},
-      slide: 10,
-      speed: 500,
-      animation: 'lazy',
-      point: {
-        visible: true,
-      },
-      load: 3,
-      easing: 'ease',
-      velocity: 0,
-      loop: true,
-      touch: true,
-      custom: 'banner'
-    };
     this.expensesPerWeeksCarruselConfig = {
       grid: {xs: 1, sm: 1, md: 1, lg: 1, all: 0},
       slide: 1,
@@ -76,6 +62,11 @@ export class ExpensesPerWeekComponent implements OnInit {
         });
       }
     });
+  }
+
+  move(pos, carrusel) {
+    this.weekSelected = pos;
+    carrusel.moveToPosition(pos);
   }
 
 }

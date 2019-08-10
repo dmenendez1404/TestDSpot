@@ -1,5 +1,5 @@
 <div class="container">
-  <mat-card>
+  <mat-card class="normal-card">
     <div class="layer" *ngIf="isOverlay"></div>
     <div class="header">
       <h2>General expenses</h2>
@@ -15,65 +15,67 @@
         <mat-icon matSuffix>filter_list</mat-icon>
       </mat-form-field>
     </div>
-    <table mat-table *ngIf="dataSource.data.length > 0"
-           [dataSource]="dataSource" class="mat-elevation-z8">
+    <div class="table-container">
+      <table mat-table *ngIf="dataSource.data.length > 0"
+             [dataSource]="dataSource" class="mat-elevation-z8">
 
 
-      <!-- Name Column -->
-      <ng-container matColumnDef="name">
-        <th mat-header-cell *matHeaderCellDef> Name</th>
-        <td mat-cell *matCellDef="let element" data-label="Name"> {{element.name}}</td>
-      </ng-container>
+        <!-- Name Column -->
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef> Name</th>
+          <td mat-cell *matCellDef="let element" data-label="Name"> {{element.name}}</td>
+        </ng-container>
 
-      <!-- Value Column -->
-      <ng-container matColumnDef="value">
-        <th mat-header-cell *matHeaderCellDef> Value</th>
-        <td mat-cell *matCellDef="let element" data-label="Value"> {{element.value}}</td>
-      </ng-container>
+        <!-- Value Column -->
+        <ng-container matColumnDef="value">
+          <th mat-header-cell *matHeaderCellDef> Value</th>
+          <td mat-cell *matCellDef="let element" data-label="Value"> {{element.value}}</td>
+        </ng-container>
 
-      <!-- Date Column -->
-      <ng-container matColumnDef="date">
-        <th mat-header-cell *matHeaderCellDef> Date</th>
-        <td mat-cell *matCellDef="let element" data-label="Date"> {{element.date| date: 'dd MMMM yyyy'}}</td>
-      </ng-container>
+        <!-- Date Column -->
+        <ng-container matColumnDef="date">
+          <th mat-header-cell *matHeaderCellDef> Date</th>
+          <td mat-cell *matCellDef="let element" data-label="Date"> {{element.date| date: 'dd MMMM yyyy'}}</td>
+        </ng-container>
 
-      <!-- Actions Column -->
-      <ng-container matColumnDef="actions">
-        <th mat-header-cell *matHeaderCellDef></th>
-        <td mat-cell *matCellDef="let element" data-label="Acciones" class="actions_td">
-          <div>
-            <button mat-raised-button color="primary" (click)="editExpense(element)"
-                    class="mat-elevation-z6 w-100 mt-3 editButtom">EDIT
-            </button>
-            <button mat-raised-button color="primary" (click)="remove(element)"
-                    class="mat-elevation-z6 w-100 mt-3 deleteButtom">DELETE
-            </button>
-          </div>
-        </td>
-      </ng-container>
+        <!-- Actions Column -->
+        <ng-container matColumnDef="actions">
+          <th mat-header-cell *matHeaderCellDef></th>
+          <td mat-cell *matCellDef="let element" data-label="Acciones" class="actions_td">
+            <div>
+              <button mat-raised-button color="primary" (click)="editExpense(element)"
+                      class="mat-elevation-z6 w-100 mt-3 editButtom">EDIT
+              </button>
+              <button mat-raised-button color="primary" (click)="remove(element)"
+                      class="mat-elevation-z6 w-100 mt-3 deleteButtom">DELETE
+              </button>
+            </div>
+          </td>
+        </ng-container>
 
-      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns;">
-      </tr>
-    </table>
-    <div *ngIf="dataSource.data.length === 0 && filtering" class="no-results">
-      <img src="assets/img/no%20found.png">
-      <p>
-        No expense founded in this range.
-      </p>
-      <button mat-raised-button color="primary"
-              class="mat-elevation-z6 w-100 mt-3" (click)="resetList()">Refresh List
-      </button>
-    </div>
-    <div *ngIf="dataSource.data.length === 0 && !filtering" class="no-results">
-      <img src="assets/img/empty.png">
-      <p>
-        No expense recorded at the moment
-      </p>
-      <button mat-raised-button color="primary"
-              class="mat-elevation-z6 w-100 mt-3" class="addExpense"
-              (click)="newExpense()">Add the first one
-      </button>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;">
+        </tr>
+      </table>
+      <div *ngIf="dataSource.data.length === 0 && filtering" class="no-results">
+        <img src="assets/img/no%20found.png">
+        <p>
+          No expense founded in this range.
+        </p>
+        <button mat-raised-button color="primary"
+                class="mat-elevation-z6 w-100 mt-3" (click)="resetList()">Refresh List
+        </button>
+      </div>
+      <div *ngIf="dataSource.data.length === 0 && !filtering" class="no-results">
+        <img src="assets/img/empty.png">
+        <p>
+          No expense recorded at the moment
+        </p>
+        <button mat-raised-button color="primary"
+                class="mat-elevation-z6 w-100 mt-3" class="addExpense"
+                (click)="newExpense()">Add the first one
+        </button>
+      </div>
     </div>
   </mat-card>
   <div id="responsive-div">

@@ -2,34 +2,45 @@
   background-color: #EFF8F5;
   padding: 50px;
   min-width: 300px;
+  height: 80%;
+  width: 90%;
   #responsive-div {
     display: none
   }
-  mat-card {
+  .normal-card {
+    height: 100%;
+    width: 90%;
     background: white;
     border-radius: 10px;
-    table {
+    .table-container {
+      height: 90%;
       width: 100%;
-      th {
-        border-bottom-width: 0px;
-        font-family: Montserrat;
-        font-size: 16px;
-        font-weight: normal;
-        color: #707070;
-      }
-      td {
-        width: 24%;
-        font-family: Montserrat;
-        font-size: 15px;
-        font-weight: lighter;
-        color: #4B4B4B;
+      display: block;
+      overflow-y: auto;
+      table {
+        width: 100%;
+        height: 100%;
+        th {
+          border-bottom-width: 0px;
+          font-family: Montserrat;
+          font-size: 16px;
+          font-weight: normal;
+          color: #707070;
+        }
+        td {
+          width: 24%;
+          font-family: Montserrat;
+          font-size: 15px;
+          font-weight: lighter;
+          color: #4B4B4B;
 
-        &.mat-cell.cdk-column-actions.mat-column-actions {
-          width: 25%;
-          min-width: 235px;
-          > div {
-            display: flex;
-            justify-content: center;
+          &.mat-cell.cdk-column-actions.mat-column-actions {
+            width: 25%;
+            min-width: 235px;
+            > div {
+              display: flex;
+              justify-content: center;
+            }
           }
         }
       }
@@ -55,6 +66,7 @@
   justify-content: space-between;
   padding: 0px 24px;
   align-items: center;
+  height: 10%;
   h2 {
     color: #707070;
   }
