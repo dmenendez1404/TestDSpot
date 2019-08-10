@@ -6,6 +6,11 @@
       <mat-icon matSuffix>filter_list</mat-icon>
     </mat-card>
   </div>
- <app-weeks-periods-carusel [expensesByWeek]="expensesByWeek" (moveTo)="move($event,detailCarusel)"></app-weeks-periods-carusel>
- <app-weeks-details-carusel [expensesByWeek]="expensesByWeek" #detailCarusel></app-weeks-details-carusel>
+  <div class="week-carusel-container">
+    <app-weeks-periods-carusel [expensesByWeek]="expensesByWeek"
+                               (moveTo)="move($event,detailCarusel)"></app-weeks-periods-carusel>
+  </div>
+  <div class="detail-carusel-container">
+    <app-weeks-details-carusel [expensesByWeek]="expensesByWeek" #detailCarusel></app-weeks-details-carusel>
+  </div>
 </div>

@@ -48,13 +48,13 @@ export class WeeksPeriodsCaruselComponent implements OnInit {
     if (widthScreen < 900)
       this.currentPos = widthScreen / 2 - 120;
     else
-      this.currentPos = (widthScreen - widthScreen * 0.25) / 2 - 100;
+      this.currentPos = (widthScreen - (widthScreen  * 0.25)) / 2 - 100;
     this.animateStuff = {value: 'moveTo', params: {pos: this.currentPos}};
 
     this.settingsService.getSideNavState().pipe(skip(1))
       .subscribe(value => {
         if (value) {
-          this.currentPos = (widthScreen - widthScreen * 0.25) / 2 - 100;
+          this.currentPos = (widthScreen - (widthScreen * 0.25)) / 2 - 100;
         }
         else {
           this.currentPos = widthScreen / 2 - 120;
@@ -67,9 +67,9 @@ export class WeeksPeriodsCaruselComponent implements OnInit {
 
   moveToPosition(pos: number) {
     if (pos > this.activePoint)
-      this.currentPos = this.currentPos + (this.activePoint - pos) * 242;
+      this.currentPos = this.currentPos + (this.activePoint - pos) * (242);
     else
-      this.currentPos = this.currentPos + (this.activePoint - pos) * 242;
+      this.currentPos = this.currentPos + (this.activePoint - pos) * (242);
     this.animateStuff = {value: 'moveTo', params: {pos: this.currentPos}};
     this.activePoint = pos;
     this.moveTo.emit(pos)
