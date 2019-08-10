@@ -1,19 +1,20 @@
 .container {
   width: 100%;
+  height: 100%;
   .top-toolbar {
     padding: 0px;
-    height: 103px;
+    height: 10vh;
     background: white;
     justify-content: space-between;
     div:first-child {
-      height: 103px;
+      height: 100%;
       width: 25%;
       min-width: 300px;
       background-image: linear-gradient(180deg, #6AA5E3, #6866E9);
       display: flex;
       align-items: center;
       justify-content: flex-start;
-      img:first-child{
+      img:first-child {
         width: 18px;
         height: 18px;
         margin-left: 50px;
@@ -24,7 +25,7 @@
         height: 47px;
       }
     }
-    div:last-child{
+    div:last-child {
       display: flex;
       justify-content: center;
       align-items: center;
@@ -36,11 +37,11 @@
       }
     }
   }
-  .top-toolbar-responsive{
+  .top-toolbar-responsive {
     display: none;
   }
   mat-drawer-container {
-    height: calc(100vh - 103px);
+    height: 90vh;
     .menu-container {
       min-width: 300px;
       width: 25%;
@@ -131,20 +132,23 @@
         }
       }
     }
-    .panel-container {
+    .mat-drawer-content {
       height: 100%;
-      background-color: #EFF8F5;
-      overflow-x: hidden;
+      .panel-container {
+        height: 100%;
+        background-color: #EFF8F5;
+        overflow-x: hidden;
+      }
     }
   }
   @media screen and (max-width: 600px) {
-    .top-toolbar{
+    .top-toolbar {
       display: none;
     }
     .menu-container {
       padding-top: 40px;
     }
-    .top-toolbar-responsive{
+    .top-toolbar-responsive {
       display: flex;
       padding: 0px;
       height: 103px;
@@ -156,16 +160,16 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
-        img:first-child{
+        img:first-child {
           width: 18px;
           height: 18px;
           margin-left: 25px;
         }
-        img.title{
+        img.title {
           width: 159px;
           height: 22px;
         }
-        img:last-child{
+        img:last-child {
           width: 28px;
           height: 20px;
           margin-right: 25px;
@@ -173,5 +177,6 @@
       }
     }
   }
+
 }
 

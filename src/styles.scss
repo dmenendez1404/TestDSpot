@@ -15,6 +15,8 @@ $material-icons-font-path: '~material-icons/iconfont/';
 body {
   margin: 0px;
   padding: 0px;
+  height: 100%;
+  width: 100%;
 }
 
 .mat-dialog-container {
@@ -119,4 +121,20 @@ $custom-typography: mat-typography-config(
       margin-left: 0px !important;
       margin-right: 0px !important;
     }
+}
+/* width */
+::-webkit-scrollbar {
+  width: 11px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  border: 0px;
+  height: 40px!important;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #6FE3FF;
+  border-radius: 100px;
 }
