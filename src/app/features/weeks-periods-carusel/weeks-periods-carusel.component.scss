@@ -1,0 +1,52 @@
+#periods-container {
+  display: flex;
+  transform: translateX(45%);
+  .tile-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 75px;
+    &.active {
+      margin-top: -7px;
+      .week-container {
+        width: 250px;
+        background-image: linear-gradient(180deg, #6AA5E3, #6866E9);
+        color: white;
+      }
+    }
+    p {
+      margin: 0px;
+      color: #6866E9;
+      font-size: 12px;
+      font-weight: bold;
+    }
+    .week-container {
+      margin-right: 24px;
+      min-width: 200px;
+      height: 57px;
+      border-radius: 29px;
+      border: solid 1px #6866E9;
+      color: #6866E9;
+      font-size: 18px;
+      font-family: Montserrat;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 0px 8px;
+      &:hover{
+        cursor: pointer;
+      }
+    }
+    .ball{
+      width: 13px;
+      height: 13px;
+      border-radius: 50%;
+      background-image: linear-gradient(180deg, #6AA5E3, #6866E9);
+      position: absolute;
+      align-self: flex-end;
+      margin-top: -20px;
+      margin-left: -24px;
+    }
+  }
+}

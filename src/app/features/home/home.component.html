@@ -2,7 +2,7 @@
   <mat-toolbar class="top-toolbar">
   <div>
     <img [src]="sidenav.opened? '../../../assets/img/menu_open.png':'../../../assets/img/menu_close.png'"
-         (click)="sidenav.toggle()">
+         (click)="toggleSideNav(sidenav)">
     <img src="../../../assets/img/logo_sidebar.png">
   </div>
   <div>

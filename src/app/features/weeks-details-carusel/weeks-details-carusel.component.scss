@@ -1,0 +1,24 @@
+#periods-details-container {
+  display: -webkit-box;
+  transform: translateX(45%);
+  height: 100%;
+  width: 100%;
+  .expenseListDetailsContainer {
+    height: 100%;
+    margin: 24px !important;
+  }
+}
+
+@media screen and (max-width: 1400px) {
+  .expenseListDetailsContainer {
+    margin: 0px 6% 0px 6% !important;
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .expenseListDetailsContainer {
+    margin: 2% 7% 0px 7% !important;
+  }
+}
+
+
