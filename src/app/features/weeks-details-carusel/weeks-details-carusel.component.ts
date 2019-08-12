@@ -16,9 +16,9 @@ import {until} from 'selenium-webdriver';
         }),
         {params: {pos: 0}}
       ),
-      transition('*=>*', [
-        animate('1s ease'),
-      ]),
+      transition('*=>*',
+        animate('1s ease-in')
+      ),
     ])
   ]
 })
@@ -37,11 +37,11 @@ export class WeeksDetailsCaruselComponent implements OnInit {
     const widthScreen = window.innerWidth;
     if (widthScreen < 900) {
       this.widthCard = widthScreen * 0.55;
-      this.currentPos = widthScreen / 2 - this.widthCard/2;
+      this.currentPos = widthScreen / 2 - this.widthCard / 2;
     }
     else {
       this.widthCard = (widthScreen - (widthScreen * 0.25)) * 0.55;
-      this.currentPos = (widthScreen - (widthScreen * 0.25)) / 2 - this.widthCard/2;
+      this.currentPos = (widthScreen - (widthScreen * 0.25)) / 2 - this.widthCard / 2;
     }
     this.animateStuff = {value: 'moveTo', params: {pos: this.currentPos}};
 
@@ -49,13 +49,13 @@ export class WeeksDetailsCaruselComponent implements OnInit {
       .subscribe(value => {
         if (value) {
           this.widthCard = (widthScreen - (widthScreen * 0.25)) * 0.55;
-          this.currentPos = (widthScreen - (widthScreen * 0.25)) / 2 - this.widthCard/2;
+          this.currentPos = (widthScreen - (widthScreen * 0.25)) / 2 - this.widthCard / 2;
         }
         else {
           this.widthCard = widthScreen * 0.55;
-          this.currentPos = widthScreen / 2 - this.widthCard/2;
+          this.currentPos = widthScreen / 2 - this.widthCard / 2;
         }
-        console.log(this.widthCard)
+        console.log(this.widthCard);
         const pos = this.activePoint;
         this.activePoint = 0;
         this.moveToPosition(pos);
@@ -67,10 +67,10 @@ export class WeeksDetailsCaruselComponent implements OnInit {
     const widthScreen = window.innerWidth;
     if (widthScreen < 900) {
 
-      this.currentPos = widthScreen / 2 - this.widthCard/2;
+      this.currentPos = widthScreen / 2 - this.widthCard / 2;
     }
     else {
-      this.currentPos = (widthScreen - widthScreen * 0.25) / 2 - this.widthCard/2;
+      this.currentPos = (widthScreen - widthScreen * 0.25) / 2 - this.widthCard / 2;
     }
     const pos = this.activePoint;
     this.activePoint = 0;
@@ -79,9 +79,9 @@ export class WeeksDetailsCaruselComponent implements OnInit {
 
   moveToPosition(pos: number) {
     if (pos > this.activePoint)
-      this.currentPos = this.currentPos + (this.activePoint - pos) * (this.widthCard+48);
+      this.currentPos = this.currentPos + (this.activePoint - pos) * (this.widthCard + 48);
     else
-      this.currentPos = this.currentPos + (this.activePoint - pos) * (this.widthCard+48);
+      this.currentPos = this.currentPos + (this.activePoint - pos) * (this.widthCard + 48);
     this.animateStuff = {value: 'moveTo', params: {pos: this.currentPos}};
     this.activePoint = pos;
     this.moveTo.emit(pos);

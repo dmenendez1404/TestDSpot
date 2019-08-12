@@ -46,6 +46,7 @@
       </div>
     </mat-drawer>
     <mat-drawer-content>
+      <div class="layer" *ngIf="isOverlay"></div>
       <div class="panel-container">
         <router-outlet></router-outlet>
       </div>

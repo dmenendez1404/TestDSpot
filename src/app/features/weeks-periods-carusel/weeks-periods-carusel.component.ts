@@ -14,10 +14,10 @@ import {fromEvent} from 'rxjs';
           'transform': 'translate3d({{pos}}px, 0, 0)',
         }),
         {params: {pos: 0}}
+    ),
+      transition('*=>*',
+        animate('1s ease-in')
       ),
-      transition('*=>*', [
-        animate('1s ease'),
-      ]),
     ])
   ]
 })
@@ -38,8 +38,8 @@ export class WeeksPeriodsCaruselComponent implements OnInit {
       this.currentPos = widthScreen / 2 - 120;
     else
       this.currentPos = (widthScreen - widthScreen * 0.25) / 2 - 100;
-    const pos = this.activePoint
-    this.activePoint = 0
+    const pos = this.activePoint;
+    this.activePoint = 0;
     this.moveToPosition(pos);
   }
 
@@ -48,7 +48,7 @@ export class WeeksPeriodsCaruselComponent implements OnInit {
     if (widthScreen < 900)
       this.currentPos = widthScreen / 2 - 120;
     else
-      this.currentPos = (widthScreen - (widthScreen  * 0.25)) / 2 - 100;
+      this.currentPos = (widthScreen - (widthScreen * 0.25)) / 2 - 100;
     this.animateStuff = {value: 'moveTo', params: {pos: this.currentPos}};
 
     this.settingsService.getSideNavState().pipe(skip(1))
@@ -59,8 +59,8 @@ export class WeeksPeriodsCaruselComponent implements OnInit {
         else {
           this.currentPos = widthScreen / 2 - 120;
         }
-        const pos = this.activePoint
-        this.activePoint = 0
+        const pos = this.activePoint;
+        this.activePoint = 0;
         this.moveToPosition(pos);
       });
   }
@@ -72,7 +72,7 @@ export class WeeksPeriodsCaruselComponent implements OnInit {
       this.currentPos = this.currentPos + (this.activePoint - pos) * (242);
     this.animateStuff = {value: 'moveTo', params: {pos: this.currentPos}};
     this.activePoint = pos;
-    this.moveTo.emit(pos)
+    this.moveTo.emit(pos);
   }
 
   getMovesPX(event) {

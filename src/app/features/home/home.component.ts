@@ -26,20 +26,23 @@ export class HomeComponent implements OnInit, OnDestroy {
   memberActive: any;
   sidenavIsOpened = true;
   sidenavIsPinned = true;
+  isOverlay = false;
+
   constructor(private authService: AuthService,
               private router: Router,
               public dialog: MatDialog,
               private expenseService: ExpenseService,
               private settingsService: SettingsService) {
   }
+
   @HostListener('window:resize')
   public onWindowResize(): void {
     if (window.innerWidth <= 900) {
-      this.settingsService.setSideNaveState(false)
+      this.settingsService.setSideNaveState(false);
       this.sidenavIsOpened = false;
       this.sidenavIsPinned = false;
-    }else{
-      this.settingsService.setSideNaveState(true)
+    } else {
+      this.settingsService.setSideNaveState(true);
       this.sidenavIsOpened = true;
       this.sidenavIsPinned = true;
     }
@@ -47,7 +50,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     if (window.innerWidth <= 900) {
-      this.settingsService.setSideNaveState(false)
+      this.settingsService.setSideNaveState(false);
       this.sidenavIsOpened = false;
       this.sidenavIsPinned = false;
     }
@@ -79,10 +82,12 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   newExpense() {
+    this.isOverlay = true;
     const dialogRef = this.dialog.open(DialogFormComponent, {
       width: '800px',
       data: {
-        tittle:'Edit Expense',
+        tittle: 'Edit Expense',
+        buttonText: 'Ok',
         items: [
           {name: 'name', value: '', type: 'text'},
           {name: 'value', value: '', type: 'number', prefix: 'attach_money'}
@@ -91,6 +96,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     });
 
     dialogRef.afterClosed().subscribe(result => {
+      this.isOverlay = false;
       if (!!result) {
         this.expenseService.createExpense(result);
       }
@@ -100,9 +106,10 @@ export class HomeComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.authSubscription.unsubscribe();
   }
-  toggleSideNav(sideNav){
-    sideNav.toggle()
+
+  toggleSideNav(sideNav) {
+    sideNav.toggle();
     this.sidenavIsOpened = !this.sidenavIsOpened;
-    this.settingsService.setSideNaveState(this.sidenavIsOpened)
+    this.settingsService.setSideNaveState(this.sidenavIsOpened);
   }
 }
